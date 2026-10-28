@@ -5,9 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Interactive Lessons Workshop</title>
 <meta name="description" content="InTELECT UBD workshop, 11 November 2026: Creating Interactive Lessons for Online Learning Using AI and Microsoft Learning Zone for Canvas Integration.">
+<meta property="og:title" content="The Lesson Kitchen · 课程小厨房">
+<meta property="og:description" content="InTELECT UBD workshop, Wednesday 11 November 2026, 2:00 PM to 4:00 PM. Create interactive lessons for Canvas with AI and Microsoft Learning Zone.">
+<meta property="og:image" content="https://taykokjun-88.github.io/sharingsession/assets/img/og.jpg">
+<meta property="og:url" content="https://taykokjun-88.github.io/sharingsession/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='10' fill='%23B3261E'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23FFF6EC' font-family='serif'%3E味%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BC%8D%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%8E%8C%E6%96%99%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BC%8D%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%8E%8C%E6%96%99%E6%96%B0%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7" rel="stylesheet">
 <style>
   :root{
     --paper:#F6F0E4;--paper-2:#EFE6D3;--card:#FFFCF5;--ink:#1F1A17;--ink-soft:#4A423B;--muted:#7A6E62;
@@ -31,6 +38,29 @@
   .banner{position:relative;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--line);padding:44px 0 36px}
   .banner svg.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:220px;pointer-events:none}
   .banner .wrap{position:relative}
+  .hero-grid{display:grid;grid-template-columns:1fr minmax(0,440px);gap:12px 28px;align-items:center}
+  .hero-art{margin:0}
+  .hero-art img{width:100%;height:auto;display:block}
+  @media (max-width:760px){.hero-grid{grid-template-columns:1fr}.hero-art{order:-1;max-width:460px}}
+  /* ink illustrations: blend into the rice paper in light mode, soft edges always */
+  .art{display:block;height:auto;max-width:100%}
+  .locked .baozi{width:110px;margin:0 auto 4px}
+  .toast{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cinnabar);border-radius:8px;padding:8px 16px 8px 8px;box-shadow:0 8px 24px rgba(0,0,0,.15);color:var(--ink);font-weight:600;transform:translateY(140%);transition:transform .4s ease}
+  .toast.show{transform:none}
+  .toast img{width:64px}
+  .toast .brush{color:var(--cinnabar);font-size:1.3rem;display:block;font-weight:400}
+  footer .baozi{width:110px;margin:0 auto 6px}
+  .guide{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;margin:14px 0}
+  .guide .art{width:150px}
+  .bubble{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;color:var(--ink);font-style:italic}
+  .bubble::before{content:'';position:absolute;left:-9px;top:50%;width:16px;height:16px;background:var(--card);border-left:1px solid var(--line);border-bottom:1px solid var(--line);transform:translateY(-50%) rotate(45deg)}
+  .bubble b.who{display:block;font-style:normal;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cinnabar)}
+  .with-art{display:grid;grid-template-columns:1fr 170px;gap:20px;align-items:center}
+  .with-art .art{width:170px}
+  .card .top-art{width:100%;max-width:300px;margin:0 auto 10px}
+  .chef-card{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}
+  .chef-card .art{width:150px}
+  @media (max-width:560px){.guide,.chef-card{grid-template-columns:96px 1fr}.guide .art,.chef-card .art{width:96px}.with-art{grid-template-columns:1fr}.with-art .art{width:140px;margin:0 auto}}
   .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
   .eyebrow .tag{font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
   .kitchen{display:flex;align-items:center;gap:18px;margin:18px 0 6px}
@@ -100,20 +130,24 @@
     <path d="M0 220 L0 150 C90 120 140 70 230 95 C300 115 330 60 420 75 C520 92 560 140 640 130 C760 118 900 160 1200 170 L1200 220Z" fill="currentColor" style="color:var(--ink)" opacity=".06"/>
     <path d="M0 220 L0 200 C200 195 300 180 380 160 C470 120 540 40 640 60 C720 76 760 130 850 115 C930 100 980 50 1060 70 C1120 85 1170 110 1200 105 L1200 220Z" fill="currentColor" style="color:var(--ink)" opacity=".08"/>
     <path d="M0 220 L0 190 C150 170 260 185 400 175 C560 162 700 195 860 182 C1000 170 1100 188 1200 180 L1200 220Z" fill="currentColor" style="color:var(--jade)" opacity=".12"/>
-    <circle cx="1040" cy="40" r="26" fill="currentColor" style="color:var(--cinnabar)" opacity=".75"/>
   </svg>
   <div class="wrap">
     <div class="eyebrow"><span class="tag">InTELECT UBD Workshop · 11 November 2026</span></div>
-    <div class="kitchen">
-      <span class="seal">味</span>
-      <div><span class="name brush">课程小厨房</span><span class="en">The Lesson Kitchen</span></div>
+    <div class="hero-grid">
+      <div>
+        <div class="kitchen">
+          <span class="seal">味</span>
+          <div><span class="name brush">课程小厨房</span><span class="en">The Lesson Kitchen</span></div>
+        </div>
+        <h1 class="serif">Creating Interactive Lessons for Online Learning Using Artificial Intelligence and Microsoft Learning Zone for Canvas Integration</h1>
+        <p class="lead">From raw course notes to a lesson your students can taste. You cook, they learn.</p>
+      </div>
+      <figure class="hero-art"><img class="art" src="assets/img/hero.webp" width="821" height="524" alt="The Head Chef holding a calligraphy brush, the apprentice Xiao Shao carrying a laptop on a tray, and Baozi the steamed bun peeking from a bamboo steamer"></figure>
     </div>
-    <h1 class="serif">Creating Interactive Lessons for Online Learning Using Artificial Intelligence and Microsoft Learning Zone for Canvas Integration</h1>
-    <p class="lead">From raw course notes to a lesson your students can taste. You cook, they learn.</p>
     <div class="facts">
       <div class="fact"><b>Date</b>Wednesday, 11 November 2026</div>
       <div class="fact"><b>Time</b>2:00 PM to 4:00 PM</div>
-      <div class="fact"><b>Venue</b>【Venue】, Universiti Brunei Darussalam</div>
+      <div class="fact"><b>Venue</b>InTELECT Smart Classroom (Room 4), Chancellor Hall, UBD</div>
       <div class="fact"><b>Head Chef</b>Tay Kok Jun, Language Centre</div>
     </div>
   </div>
@@ -154,7 +188,10 @@
     <h2><span class="seal">采</span><span class="zh brush">采买</span><span class="en">Shopping list: before you come</span></h2>
     <div class="stroke"></div>
     <div class="card">
+      <div class="with-art">
       <p>Every good cook shops before service. Please get these ready before 11 November so we spend our time cooking, not installing.</p>
+      <img class="art" src="assets/img/shao-shopping.webp" loading="lazy" alt="Xiao Shao walking with a bamboo basket holding a laptop, notes and vegetables">
+      </div>
       <ul class="tick">
         <li><b>Bring your own laptop.</b> A Windows laptop is preferred, and a Copilot+ PC is even better.</li>
         <li><b>Install Microsoft Learning Zone</b> on your laptop before the workshop. 【Download link】</li>
@@ -188,6 +225,10 @@
     <div class="stroke"></div>
     <div data-stage="1"></div>
     <template data-stage-content="1">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-pointing.webp" loading="lazy" alt="Xiao Shao pointing at three kitchen stations">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Welcome to the kitchen! Three stations, one goal: a lesson your students can taste.</div>
+      </div>
       <div class="card">
         <h3><span class="brush">鲜</span>What makes a lesson interactive?</h3>
         <p>A reading is a recipe card: students only look at it. An interactive lesson is a meal they cook themselves. It asks them to <b>do something</b> with it and gives <b>feedback right away</b>: choose, sort, match, try again, see why.</p>
@@ -219,10 +260,12 @@
     <template data-stage-content="2">
       <div class="grid">
         <div class="card">
+          <img class="art top-art" src="assets/img/shao-wok.webp" loading="lazy" alt="Xiao Shao tossing vegetables in a wok over a big flame">
           <h3><span class="brush">快炒</span>Demo A: Quick Wok</h3>
           <p>Live demo of Microsoft Learning Zone: from a file to a shareable interactive lesson.</p>
         </div>
         <div class="card">
+          <img class="art top-art" src="assets/img/chef-special.webp" loading="lazy" alt="The Head Chef carefully plating a small laptop made of food">
           <h3><span class="brush">私房菜</span>Demo B: Chef's Special</h3>
           <p>Interactive lessons from UBD Mandarin modules, running on Google Sites and inside Canvas as students see them.</p>
         </div>
@@ -244,6 +287,10 @@
 
     <div data-stage="3a"></div>
     <template data-stage-content="3a">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-prep.webp" loading="lazy" alt="Xiao Shao chopping vegetables next to an open recipe scroll">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Good ingredients make a good dish. Pick one short topic, not a whole chapter.</div>
+      </div>
       <div class="card">
         <h3><span class="brush">备料</span>Step 1 · Prep the ingredients (10 min)</h3>
         <ol>
@@ -282,6 +329,10 @@ Here is my material:
 
     <div data-stage="3b"></div>
     <template data-stage-content="3b">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-tasting.webp" loading="lazy" alt="Xiao Shao tasting soup from a ladle with one finger raised">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Always taste before you serve! Check every answer. You are the subject expert, not the AI.</div>
+      </div>
       <div class="card">
         <h3><span class="brush">试味</span>Step 2 · Taste and adjust the seasoning (15 min)</h3>
         <ol>
@@ -309,6 +360,10 @@ At the end, show a summary of which questions the student got wrong, with the co
 
     <div data-stage="3c"></div>
     <template data-stage-content="3c">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-serving.webp" loading="lazy" alt="Xiao Shao carrying a covered dish on a tray">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Simple dishes go straight onto the Canvas plate. Dishes with JavaScript travel on the Google Sites plate first.</div>
+      </div>
       <div class="card">
         <h3><span class="brush">上桌</span>Step 3 · Plate up and serve in Canvas (20 min)</h3>
         <p>Choose the plate that fits your dish.</p>
@@ -353,6 +408,10 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
 
     <div data-stage="3d"></div>
     <template data-stage-content="3d">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-wok.webp" loading="lazy" alt="Xiao Shao stir frying in a wok">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Quick Wok time! Hot, fast and ready in minutes.</div>
+      </div>
       <div class="card">
         <h3><span class="brush">快炒</span>Step 4 · Quick Wok with Microsoft Learning Zone (10 min)</h3>
         <ol>
@@ -372,6 +431,10 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
     <div class="stroke"></div>
     <div data-stage="4"></div>
     <template data-stage-content="4">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-cheering.webp" loading="lazy" alt="Xiao Shao clapping happily">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Your turn to serve! Every dish at this table gets a round of applause.</div>
+      </div>
       <div class="card">
         <p>Four or five colleagues from different disciplines will serve their dish on the main screen, about 3 to 4 minutes each.</p>
         <h3>When you serve, tell us:</h3>
@@ -390,6 +453,10 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
     <div class="stroke"></div>
     <div data-stage="5"></div>
     <template data-stage-content="5">
+      <div class="guide">
+        <img class="art" src="assets/img/shao-scroll.webp" loading="lazy" alt="Xiao Shao offering a bundle of recipe scrolls">
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Take the recipes home. They stay on this page after today, so you can cook again any time.</div>
+      </div>
       <div class="card tbl">
         <h3><span class="brush">点菜</span>Which dish, when?</h3>
         <table>
@@ -409,6 +476,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
         </ul>
       </div>
       <div class="card" style="text-align:center">
+        <img class="art top-art" style="max-width:200px" src="assets/img/shao-bow.webp" loading="lazy" alt="Xiao Shao giving a polite fist and palm salute">
         <h3><span class="brush">谢</span>How was the meal?</h3>
         <p>Please take two minutes to complete the InTELECT feedback form.</p>
         <a class="btn gold" href="#" target="_blank" rel="noopener">【Feedback form】</a>
@@ -419,15 +487,18 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
   <section id="contact">
     <h2><span class="seal">厨</span><span class="zh brush">主厨</span><span class="en">The head chef</span></h2>
     <div class="stroke"></div>
-    <div class="card">
+    <div class="card chef-card">
+      <img class="art" src="assets/img/chef-portrait.webp" loading="lazy" alt="Illustration of Tay Kok Jun as the Head Chef, arms crossed and smiling">
       <p><b>Tay Kok Jun</b>, Education Officer, Language Centre, Universiti Brunei Darussalam<br>
-      Google Certified Educator · Microsoft Elevate Educator Expert 2026–2027<br>
-      Email: <a href="mailto:【email】">【email】</a></p>
+      Google Certified Educator Level 1 &amp; Level 2 · Gemini Educator · Microsoft Elevate Educator Expert 2026–2027<br>
+      Email: <a href="mailto:kokjun.tay@ubd.edu.bn">kokjun.tay@ubd.edu.bn</a></p>
     </div>
   </section>
 </main>
 
-<footer><span class="seal">味</span><br>The Lesson Kitchen · InTELECT UBD · Universiti Brunei Darussalam · 11 November 2026</footer>
+<footer><img class="art baozi" src="assets/img/baozi-cheer.webp" loading="lazy" alt="Baozi waving happily on top of a bamboo steamer">The Lesson Kitchen · InTELECT UBD · Universiti Brunei Darussalam · 11 November 2026</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"><img src="assets/img/baozi-awake.webp" alt=""><div><span class="brush">新菜上桌</span>A new course is served. Scroll to see it.</div></div>
 
 <script>
 // Stages open when their key is listed in unlock.json. The page checks every 20 seconds.
@@ -436,6 +507,14 @@ const preview = new URLSearchParams(location.search).has('preview');
 if (preview) document.getElementById('previewBar').hidden = false;
 const opened = new Set();
 
+let served = false;
+function showToast() {
+  served = false;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 5000);
+}
+
 function render(unlocked, first) {
   document.querySelectorAll('[data-stage]').forEach(slot => {
     const key = slot.dataset.stage;
@@ -443,12 +522,13 @@ function render(unlocked, first) {
     if (preview || unlocked.includes(key)) {
       const tpl = document.querySelector('[data-stage-content="' + key + '"]');
       slot.replaceChildren(tpl.content.cloneNode(true));
-      if (!first) slot.querySelectorAll('.card').forEach(c => c.classList.add('fresh'));
+      if (!first) { slot.querySelectorAll('.card').forEach(c => c.classList.add('fresh')); served = true; }
       opened.add(key);
     } else if (!slot.firstChild) {
-      slot.innerHTML = '<div class="locked"><span class="brush">火候未到</span><span class="steam">♨</span> Still simmering. This course is served during the workshop.</div>';
+      slot.innerHTML = '<div class="locked"><img class="art baozi" src="assets/img/baozi-sleeping.webp" alt="Baozi asleep in a bamboo steamer"><span class="brush">火候未到</span><span class="steam">♨</span> Still simmering. This course is served during the workshop.</div>';
     }
   });
+  if (served) showToast();
   document.querySelectorAll('#progress li[data-for]').forEach(li => {
     li.classList.toggle('open', opened.has(li.dataset.for));
   });
