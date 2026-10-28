@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='10' fill='%23B3261E'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23FFF6EC' font-family='serif'%3E味%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%80%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BA%8C%E4%BC%8D%E4%BC%A0%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%8F%B0%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%89%BF%E6%8E%8C%E6%96%99%E6%96%B0%E6%96%B9%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A7%98%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E8%B7%91%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%80%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BA%8C%E4%BC%8D%E4%BC%A0%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%8F%B0%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%89%BF%E6%8E%8C%E6%96%99%E6%96%B0%E6%96%B9%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A7%98%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E8%B7%91%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7%E2%96%BC" rel="stylesheet">
 <style>
   :root{
     --paper:#F6F0E4;--paper-2:#EFE6D3;--card:#FFFCF5;--ink:#1F1A17;--ink-soft:#4A423B;--muted:#7A6E62;
@@ -116,6 +116,24 @@
   .grid .card{margin:0}
   .dish{border-top:3px solid var(--jade)}
   .dish.special{border-top-color:var(--cinnabar)}
+  details.course{margin:14px 0;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+  details.course>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px 18px;color:var(--ink);font-weight:600}
+  details.course>summary::-webkit-details-marker{display:none}
+  details.course>summary .brush{color:var(--cinnabar);font-size:1.35rem;font-weight:400;flex:none}
+  details.course>summary .lbl{flex:1}
+  details.course>summary .chev{flex:none;color:var(--muted);transition:transform .2s;font-size:.9rem}
+  details.course[open]>summary .chev{transform:rotate(180deg)}
+  details.course>summary .hint{flex:none;font-size:.75rem;font-weight:400;color:var(--muted)}
+  details.course[open]>summary .hint{display:none}
+  details.course>summary:hover{background:var(--code)}
+  details.course[open]>summary{border-bottom:1px dashed var(--line)}
+  details.course>.inner{padding:4px 16px 8px}
+  @media (max-width:560px){details.course>summary .hint{display:none}details.course>.inner{padding:4px 8px 8px}}
+  details.course.new>summary{animation:flash 2.5s ease-out}
+  .locked-row{display:flex;align-items:center;gap:12px;padding:12px 18px;margin:14px 0;border:1.5px dashed var(--line);border-radius:6px;color:var(--muted)}
+  .locked-row .brush{font-size:1.2rem;opacity:.7;flex:none}
+  .locked-row .lbl{flex:1}
+  .locked-row .tag{font-size:.75rem;flex:none}
   .locked{border:1.5px dashed var(--line);border-radius:6px;padding:22px;text-align:center;color:var(--muted);background:transparent}
   .locked .brush{display:block;font-size:2rem;color:var(--ink-soft);opacity:.7;letter-spacing:.1em}
   .steam{display:inline-block;animation:steam 2.4s ease-in-out infinite}
@@ -245,7 +263,7 @@
   <section id="stage1">
     <h2><span class="seal">壹</span><span class="zh brush">识器</span><span class="en">The kitchen: foundations</span> <span class="time">2:00 PM · 15 min</span></h2>
     <div class="stroke"></div>
-    <div data-stage="1"></div>
+    <div data-stage="1" data-zh="识器" data-label="Three stations, one goal: what makes a lesson interactive"></div>
     <template data-stage-content="1">
       <div class="guide">
         <img class="art" src="assets/img/shao-pointing.webp" loading="lazy" alt="Xiao Shao pointing at three kitchen stations">
@@ -278,7 +296,7 @@
   <section id="stage2">
     <h2><span class="seal">贰</span><span class="zh brush">名厨示范</span><span class="en">Chef's table: showcase</span> <span class="time">2:15 PM · 15 min</span></h2>
     <div class="stroke"></div>
-    <div data-stage="2"></div>
+    <div data-stage="2" data-zh="示范" data-label="Two demos, and examples to taste yourself"></div>
     <template data-stage-content="2">
       <div class="grid">
         <div class="card">
@@ -307,7 +325,7 @@
     <h2><span class="seal">叁</span><span class="zh brush">掌勺</span><span class="en">Cook along: hands on</span> <span class="time">2:30 PM · 55 min</span></h2>
     <div class="stroke"></div>
 
-    <div data-stage="3a"></div>
+    <div data-stage="3a" data-zh="快炒" data-label="Step 1 · Quick Wok with Microsoft Learning Zone · 10 min"></div>
     <template data-stage-content="3a">
       <div class="guide">
         <img class="art" src="assets/img/shao-wok.webp" loading="lazy" alt="Xiao Shao stir frying in a wok">
@@ -326,7 +344,7 @@
       </div>
     </template>
 
-    <div data-stage="3b"></div>
+    <div data-stage="3b" data-zh="备料" data-label="Step 2 · Chef's Special: prep the ingredients · 10 min"></div>
     <template data-stage-content="3b">
       <div class="guide">
         <img class="art" src="assets/img/shao-prep.webp" loading="lazy" alt="Xiao Shao chopping vegetables next to an open recipe scroll">
@@ -368,7 +386,7 @@ Here is my material:
       </div>
     </template>
 
-    <div data-stage="3c"></div>
+    <div data-stage="3c" data-zh="试味" data-label="Step 3 · Taste and adjust the seasoning · 15 min"></div>
     <template data-stage-content="3c">
       <div class="guide">
         <img class="art" src="assets/img/shao-tasting.webp" loading="lazy" alt="Xiao Shao tasting soup from a ladle with one finger raised">
@@ -399,7 +417,7 @@ At the end, show a summary of which questions the student got wrong, with the co
       </div>
     </template>
 
-    <div data-stage="3d"></div>
+    <div data-stage="3d" data-zh="上桌" data-label="Step 4 · Plate up and serve in Canvas · 20 min"></div>
     <template data-stage-content="3d">
       <div class="guide">
         <img class="art" src="assets/img/shao-serving.webp" loading="lazy" alt="Xiao Shao carrying a covered dish on a tray">
@@ -452,7 +470,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
   <section id="stage4">
     <h2><span class="seal">肆</span><span class="zh brush">品鉴</span><span class="en">Tasting table: participant showcase</span> <span class="time">3:25 PM · 20 min</span></h2>
     <div class="stroke"></div>
-    <div data-stage="4"></div>
+    <div data-stage="4" data-zh="上菜" data-label="Serve your dish and visit the Tasting Table"></div>
     <template data-stage-content="4">
       <div class="guide">
         <img class="art" src="assets/img/shao-cheering.webp" loading="lazy" alt="Xiao Shao clapping happily">
@@ -491,7 +509,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
   <section id="stage5">
     <h2><span class="seal">伍</span><span class="zh brush">食谱</span><span class="en">Recipes to take home: wrap up &amp; Q&amp;A</span> <span class="time">3:45 PM · 15 min</span></h2>
     <div class="stroke"></div>
-    <div data-stage="5"></div>
+    <div data-stage="5" data-zh="秘方" data-label="Which dish when, AI Skills, and recipes to take home"></div>
     <template data-stage-content="5">
       <div class="guide">
         <img class="art" src="assets/img/shao-scroll.webp" loading="lazy" alt="Xiao Shao offering a bundle of recipe scrolls">
@@ -604,29 +622,57 @@ const preview = new URLSearchParams(location.search).has('preview');
 if (preview) document.getElementById('previewBar').hidden = false;
 const opened = new Set();
 
-let served = false;
 function showToast() {
-  served = false;
   const t = document.getElementById('toast');
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 5000);
 }
 
+let lastAuto = null;
+document.addEventListener('click', e => {
+  const sum = e.target.closest('details.course > summary');
+  if (sum) sum.parentElement.dataset.touched = '1';
+});
+
 function render(unlocked, first) {
+  const fresh = [];
   document.querySelectorAll('[data-stage]').forEach(slot => {
     const key = slot.dataset.stage;
     if (opened.has(key)) return;
     if (preview || unlocked.includes(key)) {
+      // each served course is a fold: click to open, so the page stays tidy as more courses arrive
       const tpl = document.querySelector('[data-stage-content="' + key + '"]');
-      slot.replaceChildren(tpl.content.cloneNode(true));
-      if (!first) { slot.querySelectorAll('.card').forEach(c => c.classList.add('fresh')); served = true; }
+      const d = document.createElement('details');
+      d.className = 'course';
+      d.innerHTML = '<summary><span class="brush"></span><span class="lbl"></span><span class="hint">Tap to open</span><span class="chev">▼</span></summary><div class="inner"></div>';
+      d.querySelector('.brush').textContent = slot.dataset.zh;
+      d.querySelector('.lbl').textContent = slot.dataset.label;
+      d.querySelector('.inner').appendChild(tpl.content.cloneNode(true));
+      slot.replaceChildren(d);
+      fresh.push(d);
       opened.add(key);
       if (key === '4') setTimeout(loadGallery, 100);
     } else if (!slot.firstChild) {
-      slot.innerHTML = '<div class="locked"><img class="art baozi" src="assets/img/baozi-sleeping.webp" alt="Baozi asleep in a bamboo steamer"><span class="brush">火候未到</span><span class="steam">♨</span> Still simmering. This course is served during the workshop.</div>';
+      const prev = slot.previousElementSibling;
+      const firstInSection = !(prev && prev.matches('template'));
+      if (firstInSection) {
+        slot.innerHTML = '<div class="locked"><img class="art baozi" src="assets/img/baozi-sleeping.webp" alt="Baozi asleep in a bamboo steamer"><span class="brush">火候未到</span><span class="steam">♨</span> Still simmering. This course is served during the workshop.</div>';
+      } else {
+        slot.innerHTML = '<div class="locked-row"><span class="brush"></span><span class="lbl"></span><span class="tag">🔒 火候未到</span></div>';
+        slot.querySelector('.brush').textContent = slot.dataset.zh;
+        slot.querySelector('.lbl').textContent = slot.dataset.label;
+      }
     }
   });
-  if (served) showToast();
+  // the newest course opens by itself; everything else stays folded until clicked
+  if (fresh.length && !preview) {
+    const newest = fresh[fresh.length - 1];
+    // fold the previous auto-opened course, unless the participant opened or closed it themselves
+    if (lastAuto && !lastAuto.dataset.touched) lastAuto.open = false;
+    newest.open = true;
+    lastAuto = newest;
+    if (!first) { newest.classList.add('new'); showToast(); }
+  }
   document.querySelectorAll('#progress li[data-for]').forEach(li => {
     li.classList.toggle('open', opened.has(li.dataset.for));
   });
