@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Lessons Workshop</title>
+<meta name="description" content="InTELECT UBD workshop, 11 November 2026: Creating Interactive Lessons for Online Learning Using AI and Microsoft Learning Zone for Canvas Integration.">
+<style>
+  :root{
+    --primary:#325494;--primary-dark:#1A365D;--gold:#EAA11F;--gold-dark:#B45309;
+    --text:#2D3748;--muted:#64748B;--line:#E2E8F0;--bg:#F8F9FA;--card:#FFFFFF;--code:#F1F5F9;
+    --ok:#15803D;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --primary:#8FB0EA;--primary-dark:#0F2240;--gold:#F2B544;--gold-dark:#F2B544;
+    --text:#E2E8F0;--muted:#94A3B8;--line:#2B3A52;--bg:#0B1424;--card:#13203A;--code:#0E1A2F;--ok:#4ADE80;
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px}
+  a{color:var(--primary)}
+  /* banner */
+  .banner{background:linear-gradient(135deg,#325494,#1A365D);color:#fff;padding:48px 0 40px}
+  .banner .tag{display:inline-block;background:var(--gold);color:#1A202C;font-weight:700;font-size:.78rem;letter-spacing:.06em;padding:3px 10px;border-radius:4px}
+  .banner h1{font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.25;margin:.5em 0 .3em}
+  .banner p{color:#DCE5F5;margin:0}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:24px}
+  .fact{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:10px 14px}
+  .fact b{display:block;font-size:.75rem;color:#C7D3EA;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+  /* progress */
+  .progress{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .progress ol{list-style:none;margin:0 auto;padding:10px 16px;display:flex;gap:6px;max-width:900px;overflow-x:auto}
+  .progress li{flex:1;min-width:90px}
+  .progress a{display:block;text-decoration:none;font-size:.78rem;line-height:1.3;color:var(--muted);border-top:4px solid var(--line);padding-top:6px}
+  .progress li.open a{color:var(--text);border-color:var(--gold)}
+  /* sections */
+  h2{font-size:1.45rem;color:var(--primary-dark);margin:48px 0 16px;padding-bottom:8px;position:relative}
+  @media (prefers-color-scheme:dark){h2{color:#fff}}
+  h2::after{content:'';position:absolute;left:0;bottom:0;width:48px;height:3px;background:var(--gold);border-radius:2px}
+  h3{font-size:1.1rem;color:var(--primary);margin:0 0 8px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin:14px 0;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .grid .card{margin:0}
+  .stage-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .stage-head .time{color:var(--muted);font-size:.9rem}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:.95rem;flex:none}
+  .locked{border:2px dashed var(--line);border-radius:8px;padding:22px;text-align:center;color:var(--muted);background:transparent}
+  .fresh{animation:flash 2.5s ease-out}
+  @keyframes flash{from{box-shadow:0 0 0 4px var(--gold)}to{box-shadow:0 0 0 0 transparent}}
+  ul,ol{padding-left:1.3em}
+  li{margin:4px 0}
+  table{width:100%;border-collapse:collapse;font-size:.95rem}
+  th,td{text-align:left;padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
+  th{background:var(--code)}
+  .tbl{overflow-x:auto}
+  .btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-weight:600;font-size:.92rem;border:0;cursor:pointer}
+  .btn.gold{background:var(--gold);color:#1A202C}
+  .note{border-left:4px solid var(--gold);background:var(--code);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0}
+  .tick li::marker{content:'☐  '}
+  /* prompt boxes */
+  .prompt{position:relative;margin:12px 0}
+  .prompt pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:16px;padding-top:40px;white-space:pre-wrap;word-break:break-word;font:14px/1.55 Consolas,'Courier New',monospace;margin:0;color:var(--text)}
+  .prompt .label{position:absolute;top:10px;left:14px;font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+  .prompt .copy{position:absolute;top:6px;right:6px;padding:5px 12px;font-size:.8rem}
+  code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em}
+  .preview-bar{background:var(--gold);color:#1A202C;text-align:center;font-size:.85rem;padding:6px 16px;font-weight:600}
+  footer{background:#1A365D;color:#CBD5E1;margin-top:64px;padding:28px 0;font-size:.85rem;text-align:center}
+  footer a{color:#fff}
+</style>
+</head>
+<body>
+
+<div id="previewBar" class="preview-bar" hidden>Facilitator preview: every stage is shown. Remove <code>?preview</code> from the address to see the participant view.</div>
+
+<header class="banner">
+  <div class="wrap">
+    <span class="tag">InTELECT UBD WORKSHOP</span>
+    <h1>Creating Interactive Lessons for Online Learning Using Artificial Intelligence and Microsoft Learning Zone for Canvas Integration</h1>
+    <p>Two ways to build interactive lessons for Canvas, and you will leave with at least one lesson of your own.</p>
+    <div class="facts">
+      <div class="fact"><b>Date</b>Wednesday, 11 November 2026</div>
+      <div class="fact"><b>Time</b>2:00 PM to 4:00 PM</div>
+      <div class="fact"><b>Venue</b>【Venue】, Universiti Brunei Darussalam</div>
+      <div class="fact"><b>Facilitator</b>Tay Kok Jun, Language Centre</div>
+    </div>
+  </div>
+</header>
+
+<nav class="progress" aria-label="Workshop progress">
+  <ol id="progress">
+    <li class="open"><a href="#prepare">Before you come</a></li>
+    <li data-for="1"><a href="#stage1">1 · Foundations</a></li>
+    <li data-for="2"><a href="#stage2">2 · Showcase</a></li>
+    <li data-for="3a"><a href="#stage3">3 · Hands on</a></li>
+    <li data-for="4"><a href="#stage4">4 · Sharing</a></li>
+    <li data-for="5"><a href="#stage5">5 · Wrap up</a></li>
+  </ol>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ ALWAYS OPEN ============ -->
+  <section id="about">
+    <h2>About this workshop</h2>
+    <div class="card">
+      <p>This practical workshop shows educators how to create interactive online lessons for Canvas. Participants will learn two ways to build interactive content. The first method uses Microsoft Learning Zone to create and share lessons quickly. The second method uses artificial intelligence prompts and templates to build custom interactive lessons. The workshop includes examples from UBD language modules, including interactive learning web apps. Participants will follow step by step guidance to create their own content, host it using Google Sites, and publish it in Canvas. During the session, each participant will create at least one interactive lesson and share their work with colleagues.</p>
+    </div>
+    <div class="card">
+      <h3>Intended learning outcomes</h3>
+      <p>By the end of this workshop, you will be able to:</p>
+      <ol>
+        <li>Differentiate and select appropriate digital workflows (Microsoft Learning Zone vs. generative AI templates) based on specific instructional needs.</li>
+        <li>Design and generate interactive lesson components (such as scenario based formative exercises and interactive activities) using structured AI prompt templates.</li>
+        <li>Publish and integrate interactive web content into UBD Canvas LMS modules using native HTML embedding and Google Sites.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="prepare">
+    <h2>Before you come</h2>
+    <div class="card">
+      <p>Please get these ready before 11 November so we can spend our time building, not installing.</p>
+      <ul class="tick">
+        <li><b>Bring your own laptop.</b> A Windows laptop is preferred, and a Copilot+ PC is even better.</li>
+        <li><b>Install Microsoft Learning Zone</b> on your laptop before the workshop. 【Download link】</li>
+        <li><b>Have an AI account ready</b> for ChatGPT, Gemini, or Claude, and check that you can log in. A free account is completely fine.</li>
+        <li><b>Have a Google account</b> you can use to create a Google Site.</li>
+        <li><b>Bring some course material</b>: notes, slides, a reading, or a set of questions from one of your modules. A short topic works best.</li>
+        <li><b>Check your Canvas access</b>: you should be able to edit a Page in at least one course (a sandbox course is ideal).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <h2>Programme</h2>
+    <div class="card tbl">
+      <table>
+        <tr><th>Time</th><th>Stage</th><th>Length</th></tr>
+        <tr><td>2:00 PM</td><td>1. Foundations: what makes a lesson interactive, and which tool does what</td><td>15 min</td></tr>
+        <tr><td>2:15 PM</td><td>2. Showcase: Microsoft Learning Zone demo and examples from UBD Mandarin modules</td><td>15 min</td></tr>
+        <tr><td>2:30 PM</td><td>3. Hands on: build, test, publish, step by step</td><td>55 min</td></tr>
+        <tr><td>3:25 PM</td><td>4. Participant showcase</td><td>20 min</td></tr>
+        <tr><td>3:45 PM</td><td>5. Wrap up, resources, Q&amp;A and feedback</td><td>15 min</td></tr>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:.9rem">Each stage below opens during the workshop. This page updates on its own, so there is no need to refresh.</p>
+  </section>
+
+  <!-- ============ STAGED CONTENT ============ -->
+  <section id="stage1">
+    <h2><span class="stage-head"><span class="num">1</span>Foundations <span class="time">2:00 PM · 15 min</span></span></h2>
+    <div data-stage="1"></div>
+    <template data-stage-content="1">
+      <div class="card">
+        <h3>What makes a lesson interactive?</h3>
+        <p>A reading asks students to take information in. An interactive lesson asks them to <b>do something</b> with it and gives <b>feedback right away</b>: choose, sort, match, try again, see why.</p>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Canvas LMS</h3>
+          <p>UBD's official teaching platform. Every lesson must end up here.</p>
+          <p style="color:var(--muted);font-size:.92rem">The Page editor accepts HTML and inline styles, but it removes JavaScript. Simple interactions work directly; complex apps need a host.</p>
+        </div>
+        <div class="card">
+          <h3>Microsoft Learning Zone</h3>
+          <p><b>The quick route.</b> Turn your material into an interactive lesson in a few clicks and share it straight away.</p>
+          <p style="color:var(--muted);font-size:.92rem">Best for everyday lessons when time is short.</p>
+        </div>
+        <div class="card">
+          <h3>AI + Google Sites</h3>
+          <p><b>The custom route.</b> AI writes a complete interactive web page from your prompt. Google Sites hosts it, and Canvas links or embeds it.</p>
+          <p style="color:var(--muted);font-size:.92rem">Best for key units where you want full control.</p>
+        </div>
+      </div>
+    </template>
+  </section>
+
+  <section id="stage2">
+    <h2><span class="stage-head"><span class="num">2</span>Showcase <span class="time">2:15 PM · 15 min</span></span></h2>
+    <div data-stage="2"></div>
+    <template data-stage-content="2">
+      <div class="grid">
+        <div class="card">
+          <h3>Demo A: the quick route</h3>
+          <p>Live demo of Microsoft Learning Zone: from a file to a shareable interactive lesson.</p>
+        </div>
+        <div class="card">
+          <h3>Demo B: the custom route</h3>
+          <p>Interactive lessons from UBD Mandarin modules, running on Google Sites and inside Canvas as students see them.</p>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Try them yourself</h3>
+        <ul>
+          <li>【Hamburger Pinyin learning app】: 【link】</li>
+          <li>【Learning game app】: 【link】</li>
+          <li>【Other example】: 【link】</li>
+        </ul>
+      </div>
+    </template>
+  </section>
+
+  <section id="stage3">
+    <h2><span class="stage-head"><span class="num">3</span>Hands on <span class="time">2:30 PM · 55 min</span></span></h2>
+
+    <div data-stage="3a"></div>
+    <template data-stage-content="3a">
+      <div class="card">
+        <h3>Step 1 · Prepare your material and the prompt (10 min)</h3>
+        <ol>
+          <li>Pick <b>one short topic</b> from your course material: one concept, one reading, or one set of questions.</li>
+          <li>Open ChatGPT, Gemini, or Claude.</li>
+          <li>Copy the template below, fill in the parts in <b>[square brackets]</b>, and attach or paste your material.</li>
+        </ol>
+        <div class="prompt">
+          <span class="label">Prompt template · Interactive lesson</span>
+          <button class="btn copy" type="button">Copy</button>
+<pre>You are an expert instructional designer and web developer.
+
+Create a single, self contained HTML file for an interactive online lesson, based on the course material I provide below.
+
+Lesson details
+• Course / module: [e.g. Introduction to Economics]
+• Topic: [e.g. Supply and demand]
+• Students: [e.g. first year undergraduates, English as a second language]
+• Learning goal: [what students should be able to do after the lesson]
+• Activity types: [choose 2 or 3: multiple choice quiz with feedback, drag and drop sorting, matching pairs, flashcards, fill in the blanks, scenario with choices, timeline ordering]
+
+Requirements
+1. One HTML file only. All CSS and JavaScript inside the file. No external libraries, no images from the internet.
+2. Start with a short explanation of the key ideas, then the activities.
+3. Every activity gives instant feedback: say whether the answer is right, and briefly explain why.
+4. Show a score or progress indicator and a "Try again" button.
+5. Clean, modern design with large readable text. Works well on a phone and a laptop.
+6. Use British English. Keep instructions short and clear.
+7. Use only the content from my material. Do not invent facts.
+
+Here is my material:
+[paste your notes, or attach the file]</pre>
+        </div>
+      </div>
+    </template>
+
+    <div data-stage="3b"></div>
+    <template data-stage-content="3b">
+      <div class="card">
+        <h3>Step 2 · Try it, check it, improve it (15 min)</h3>
+        <ol>
+          <li><b>Preview it.</b> Most AI tools show a preview of the code (ChatGPT Canvas, Gemini Canvas, Claude Artifacts). If not, copy the code, paste it into Notepad, and save as <code>lesson.html</code> (set "Save as type" to <b>All files</b> and encoding to <b>UTF-8</b>). Double click the file to open it in your browser.</li>
+          <li><b>Play it as a student.</b> Answer some questions right and some wrong.</li>
+          <li><b>Check the content.</b> Is every answer correct? Is anything invented? You are the subject expert.</li>
+          <li><b>Ask for changes</b> in plain words. Some examples:</li>
+        </ol>
+        <div class="prompt">
+          <span class="label">Follow up prompts</span>
+          <button class="btn copy" type="button">Copy</button>
+<pre>Question 3 has the wrong answer. The correct answer is [ ]. Please fix it and give me the full updated file.
+
+Make the text larger and add more space between the questions.
+
+Add 5 more questions of the same type, using only my material.
+
+Shuffle the question order each time the page is opened.
+
+At the end, show a summary of which questions the student got wrong, with the correct answers.</pre>
+        </div>
+        <div class="note">Always ask for the <b>full updated file</b>, so you can copy it in one go.</div>
+      </div>
+    </template>
+
+    <div data-stage="3c"></div>
+    <template data-stage-content="3c">
+      <div class="card">
+        <h3>Step 3 · Publish to Canvas (20 min)</h3>
+        <p>Choose the path that fits your lesson.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Path A: straight into a Canvas Page</h3>
+            <p>For simple lessons <b>without JavaScript</b> (reveal answers, flashcards, styled notes).</p>
+            <ol>
+              <li>Ask the AI for a Canvas safe version (prompt below).</li>
+              <li>In Canvas, create or edit a <b>Page</b>.</li>
+              <li>Click the <b>HTML editor</b> icon <code>&lt;/&gt;</code> at the bottom right of the editor.</li>
+              <li>Paste the code, then <b>Save</b>.</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>Path B: Google Sites, then Canvas</h3>
+            <p>For lessons <b>with JavaScript</b> (quizzes with scores, drag and drop, games).</p>
+            <ol>
+              <li>Go to <a href="https://sites.google.com" target="_blank" rel="noopener">sites.google.com</a> and create a blank site.</li>
+              <li><b>Insert → Embed → Embed code</b>, paste the full HTML, click <b>Next → Insert</b>.</li>
+              <li>Drag the box larger so the whole lesson fits.</li>
+              <li><b>Publish</b>, choose a web address, and set viewing to <b>public</b> so students can open it.</li>
+              <li>Copy the published link.</li>
+              <li>In Canvas, add it to a Module as an <b>External URL</b>, or embed it in a Page with the code below.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="prompt">
+          <span class="label">Path A · Canvas safe version</span>
+          <button class="btn copy" type="button">Copy</button>
+<pre>Rewrite this lesson so it can be pasted into the Canvas LMS Page HTML editor.
+Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; or &lt;body&gt; tags. Use inline style="" attributes only. For interactivity, use &lt;details&gt; and &lt;summary&gt; to reveal answers and feedback. Keep it responsive with percentage widths.</pre>
+        </div>
+        <div class="prompt">
+          <span class="label">Path B · Embed a Google Site in a Canvas Page</span>
+          <button class="btn copy" type="button">Copy</button>
+<pre>&lt;iframe src="PASTE_YOUR_GOOGLE_SITE_LINK_HERE" width="100%" height="800" style="border:0;" loading="lazy" title="Interactive lesson"&gt;&lt;/iframe&gt;</pre>
+        </div>
+        <div class="note">If the embedded lesson looks cut off in Canvas, increase the <code>height</code> number. If students see a sign in page, check the Google Site's publish setting.</div>
+      </div>
+    </template>
+
+    <div data-stage="3d"></div>
+    <template data-stage-content="3d">
+      <div class="card">
+        <h3>Step 4 · Microsoft Learning Zone (10 min)</h3>
+        <ol>
+          <li>Open <b>Microsoft Learning Zone</b> on your laptop.</li>
+          <li>Start a new lesson and add your course material (for example a PDF, Word or PowerPoint file).</li>
+          <li>Let it generate the lesson, then review and edit the content.</li>
+          <li>Share the lesson and copy its link.</li>
+          <li>In Canvas, add the link to your Module as an <b>External URL</b>, or place it in a Page.</li>
+        </ol>
+        <div class="note">Goal for Stage 3: <b>at least one complete interactive lesson in Canvas</b>, by either route.</div>
+      </div>
+    </template>
+  </section>
+
+  <section id="stage4">
+    <h2><span class="stage-head"><span class="num">4</span>Participant showcase <span class="time">3:25 PM · 20 min</span></span></h2>
+    <div data-stage="4"></div>
+    <template data-stage-content="4">
+      <div class="card">
+        <p>Four or five colleagues from different disciplines will show their lesson on the main screen, about 3 to 4 minutes each.</p>
+        <h3>When you share, tell us:</h3>
+        <ol>
+          <li>The teaching problem you wanted to solve.</li>
+          <li>Which route you chose (Learning Zone or AI + Google Sites) and why.</li>
+          <li>The interaction you are most pleased with, and what you would improve next.</li>
+        </ol>
+        <p>【Optional: link for participants to submit their lesson URL】</p>
+      </div>
+    </template>
+  </section>
+
+  <section id="stage5">
+    <h2><span class="stage-head"><span class="num">5</span>Wrap up &amp; Q&amp;A <span class="time">3:45 PM · 15 min</span></span></h2>
+    <div data-stage="5"></div>
+    <template data-stage-content="5">
+      <div class="card tbl">
+        <h3>Which route, when?</h3>
+        <table>
+          <tr><th></th><th>Microsoft Learning Zone</th><th>AI + Google Sites</th></tr>
+          <tr><td>Best for</td><td>Everyday lessons, quick turnaround</td><td>Key units, custom activities</td></tr>
+          <tr><td>Time to build</td><td>Minutes</td><td>30 to 60 minutes</td></tr>
+          <tr><td>Control over design</td><td>Limited</td><td>Full</td></tr>
+          <tr><td>Into Canvas by</td><td>Shared link</td><td>Canvas Page HTML, or Google Sites link / embed</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Take it with you</h3>
+        <ul>
+          <li>All prompt templates stay on this page. Bookmark it.</li>
+          <li>【Slides】: 【link】</li>
+          <li>【Resource pack】: 【link】</li>
+        </ul>
+      </div>
+      <div class="card" style="text-align:center">
+        <h3>Your feedback</h3>
+        <p>Please take two minutes to complete the InTELECT feedback form.</p>
+        <a class="btn gold" href="#" target="_blank" rel="noopener">【Feedback form】</a>
+      </div>
+    </template>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="card">
+      <p><b>Tay Kok Jun</b>, Education Officer, Language Centre, Universiti Brunei Darussalam<br>
+      Google Certified Educator · Microsoft Elevate Educator Expert 2026–2027<br>
+      Email: <a href="mailto:【email】">【email】</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>InTELECT UBD · Universiti Brunei Darussalam · 11 November 2026</footer>
+
+<script>
+// Stages open when their key is listed in unlock.json. The page checks every 20 seconds.
+// Add ?preview to the address to see every stage.
+const preview = new URLSearchParams(location.search).has('preview');
+if (preview) document.getElementById('previewBar').hidden = false;
+const opened = new Set();
+
+function render(unlocked, first) {
+  document.querySelectorAll('[data-stage]').forEach(slot => {
+    const key = slot.dataset.stage;
+    if (opened.has(key)) return;
+    if (preview || unlocked.includes(key)) {
+      const tpl = document.querySelector('[data-stage-content="' + key + '"]');
+      slot.replaceChildren(tpl.content.cloneNode(true));
+      if (!first) slot.querySelectorAll('.card').forEach(c => c.classList.add('fresh'));
+      opened.add(key);
+    } else if (!slot.firstChild) {
+      slot.innerHTML = '<div class="card locked">🔒 Opens during the workshop</div>';
+    }
+  });
+  document.querySelectorAll('#progress li[data-for]').forEach(li => {
+    li.classList.toggle('open', opened.has(li.dataset.for));
+  });
+}
+
+async function check(first) {
+  let unlocked = [];
+  try {
+    const r = await fetch('unlock.json?t=' + Date.now(), {cache: 'no-store'});
+    unlocked = (await r.json()).unlocked || [];
+  } catch (e) {}
+  render(unlocked, first);
+}
+
+document.addEventListener('click', e => {
+  const btn = e.target.closest('.copy');
+  if (!btn) return;
+  const text = btn.parentElement.querySelector('pre').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+});
+
+check(true);
+setInterval(() => check(false), 20000);
+</script>
+</body>
+</html>
