@@ -61,6 +61,15 @@
   .dish-card .tool{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;color:var(--jade);border:1px solid var(--jade);border-radius:99px;padding:0 8px;margin-right:auto}
   .dish-card .love{font-size:.9rem;font-style:italic;margin:4px 0}
   .dish-card .btn{margin-top:auto;align-self:flex-start;padding:6px 14px;font-size:.85rem}
+  .table-head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+  .table-head h3{margin:0}
+  .btn.gold{background:var(--gold);color:#1F1A17}
+  .btn.gold:hover{background:#9C6E25;color:#fff}
+  .dish-card.spin{outline:3px solid var(--gold);outline-offset:2px}
+  .dish-card.picked{outline:3px solid var(--cinnabar);outline-offset:2px;box-shadow:0 0 0 8px color-mix(in srgb,var(--cinnabar) 15%,transparent);transform:scale(1.03);transition:transform .3s}
+  .dish-card.picked .btn{animation:pulse 1.2s ease-in-out infinite}
+  @keyframes pulse{50%{transform:scale(1.08)}}
+  .dish-card .tasted{font-size:.72rem;color:var(--muted)}
   .gallery .empty{grid-column:1/-1;text-align:center;color:var(--muted);margin:8px 0}
   footer .baozi{width:110px;margin:0 auto 6px}
   .guide{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;margin:14px 0}
@@ -459,7 +468,11 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
         <figure class="qr"><img src="assets/img/serve-qr.svg" alt="QR code for the Tasting Table submission form"><figcaption>Scan to serve</figcaption></figure>
       </div>
       <div class="card">
-        <h3><span class="brush">品鉴台</span>The Tasting Table <span id="dishCount" class="count"></span></h3>
+        <div class="table-head">
+          <h3><span class="brush">品鉴台</span>The Tasting Table <span id="dishCount" class="count"></span></h3>
+          <button id="randomDish" class="btn gold" type="button" hidden>🎲 Pick a dish at random</button>
+        </div>
+        <p style="margin-top:0">The Tasting Table stays open after the workshop. Taste any colleague&#39;s dish whenever you like, borrow good ideas, and learn from each other.</p>
         <div id="gallery" class="gallery"><p class="empty">Loading the Tasting Table…</p></div>
       </div>
       <div class="card">
@@ -555,6 +568,7 @@ Use British English and keep it under 200 lines. Give me the complete file in on
         <h3>Take the recipes home</h3>
         <ul>
           <li>All recipes (prompt templates) and both Skills stay on this page. Bookmark it.</li>
+          <li>The <a href="#stage4">Tasting Table</a> stays open too. Keep tasting your colleagues&#39; dishes and learning from each other.</li>
           <li>【Slides】: 【link】</li>
           <li>【Resource pack】: 【link】</li>
         </ul>
@@ -649,6 +663,35 @@ function loadGallery() {
   sc.onerror = () => showGallery(null);
   document.body.appendChild(sc);
 }
+// Random tasting: spins through the dishes, lands on one not yet tasted
+const tasted = new Set();
+let pickedKey = '', spinning = false;
+function pickRandomDish() {
+  const cards = [...document.querySelectorAll('#gallery .dish-card')].filter(c => c.querySelector('a'));
+  if (!cards.length || spinning) return;
+  let pool = cards.filter(c => !tasted.has(c.dataset.key));
+  if (!pool.length) { tasted.clear(); pool = cards; }
+  const winner = pool[Math.floor(Math.random() * pool.length)];
+  cards.forEach(c => c.classList.remove('picked'));
+  spinning = true;
+  let i = 0, steps = 14 + Math.floor(Math.random() * cards.length);
+  (function tick(delay) {
+    cards.forEach(c => c.classList.remove('spin'));
+    if (i >= steps) {
+      winner.classList.add('picked');
+      pickedKey = winner.dataset.key;
+      tasted.add(pickedKey);
+      winner.scrollIntoView({behavior: 'smooth', block: 'center'});
+      spinning = false;
+      return;
+    }
+    cards[i % cards.length].classList.add('spin');
+    i++;
+    setTimeout(() => tick(delay * 1.12), delay);
+  })(60);
+}
+document.addEventListener('click', e => { if (e.target.closest('#randomDish')) pickRandomDish(); });
+
 function showGallery(res) {
   const box = document.getElementById('gallery');
   if (!box) return;
@@ -666,11 +709,15 @@ function showGallery(res) {
   document.getElementById('dishCount').textContent = dishes.length ? '· ' + dishes.length + (dishes.length === 1 ? ' dish' : ' dishes') + ' served' : '';
   if (!dishes.length) {
     box.innerHTML = '<p class="empty">No dishes yet. Be the first to serve!</p>';
+    document.getElementById('randomDish').hidden = true;
     return;
   }
+  document.getElementById('randomDish').hidden = false;
   box.replaceChildren(...dishes.map(d => {
     const card = document.createElement('div');
     card.className = 'dish-card';
+    card.dataset.key = d.name + '|' + d.title + '|' + d.link;
+    if (card.dataset.key === pickedKey) card.classList.add('picked');
     const add = (tag, cls, text) => { if (!text) return; const e = document.createElement(tag); e.className = cls; e.textContent = text; card.appendChild(e); };
     add('span', 'tool', d.tool);
     add('div', 'title', d.title || 'Untitled dish');
@@ -681,6 +728,7 @@ function showGallery(res) {
       a.className = 'btn'; a.href = d.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Taste it';
       card.appendChild(a);
     }
+    if (tasted.has(card.dataset.key) && card.dataset.key !== pickedKey) add('span', 'tasted', '✓ tasted on the big screen');
     return card;
   }));
 }
