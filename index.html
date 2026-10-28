@@ -5,67 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Interactive Lessons Workshop</title>
 <meta name="description" content="InTELECT UBD workshop, 11 November 2026: Creating Interactive Lessons for Online Learning Using AI and Microsoft Learning Zone for Canvas Integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BC%8D%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%8E%8C%E6%96%99%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7" rel="stylesheet">
 <style>
   :root{
-    --primary:#325494;--primary-dark:#1A365D;--gold:#EAA11F;--gold-dark:#B45309;
-    --text:#2D3748;--muted:#64748B;--line:#E2E8F0;--bg:#F8F9FA;--card:#FFFFFF;--code:#F1F5F9;
-    --ok:#15803D;
+    --paper:#F6F0E4;--paper-2:#EFE6D3;--card:#FFFCF5;--ink:#1F1A17;--ink-soft:#4A423B;--muted:#7A6E62;
+    --cinnabar:#B3261E;--cinnabar-dark:#8C1D17;--gold:#B7832F;--jade:#3F6B5B;--line:#E3D7C1;--code:#F3EBDB;
   }
   @media (prefers-color-scheme:dark){:root{
-    --primary:#8FB0EA;--primary-dark:#0F2240;--gold:#F2B544;--gold-dark:#F2B544;
-    --text:#E2E8F0;--muted:#94A3B8;--line:#2B3A52;--bg:#0B1424;--card:#13203A;--code:#0E1A2F;--ok:#4ADE80;
+    --paper:#16130F;--paper-2:#1D1914;--card:#221D17;--ink:#F1E9DA;--ink-soft:#D6CBB8;--muted:#A89A86;
+    --cinnabar:#E0574C;--cinnabar-dark:#C2453B;--gold:#D9A85A;--jade:#7FB09C;--line:#3A3128;--code:#1B1712;
   }}
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.7 'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif}
+  body{margin:0;color:var(--ink-soft);font:16px/1.75 'Segoe UI',-apple-system,BlinkMacSystemFont,Roboto,'Helvetica Neue',Arial,sans-serif;
+    background-color:var(--paper);background-image:radial-gradient(circle at 20% 10%,rgba(183,131,47,.06),transparent 40%),radial-gradient(circle at 80% 60%,rgba(63,107,91,.05),transparent 45%);background-attachment:fixed}
   .wrap{max-width:900px;margin:0 auto;padding:0 16px}
-  a{color:var(--primary)}
+  a{color:var(--cinnabar)}
+  .brush{font-family:'Ma Shan Zheng','Noto Serif SC','STKaiti','KaiTi',serif;font-weight:400}
+  .serif{font-family:'Noto Serif SC',Georgia,'Times New Roman',serif}
+  /* seal stamp */
+  .seal{display:inline-flex;align-items:center;justify-content:center;background:var(--cinnabar);color:#FFF6EC;border-radius:6px;
+    font-family:'Ma Shan Zheng','Noto Serif SC',serif;line-height:1;box-shadow:inset 0 0 0 2px rgba(255,246,236,.35);transform:rotate(-4deg)}
   /* banner */
-  .banner{background:linear-gradient(135deg,#325494,#1A365D);color:#fff;padding:48px 0 40px}
-  .banner .tag{display:inline-block;background:var(--gold);color:#1A202C;font-weight:700;font-size:.78rem;letter-spacing:.06em;padding:3px 10px;border-radius:4px}
-  .banner h1{font-size:clamp(1.6rem,4.5vw,2.3rem);line-height:1.25;margin:.5em 0 .3em}
-  .banner p{color:#DCE5F5;margin:0}
-  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:24px}
-  .fact{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:10px 14px}
-  .fact b{display:block;font-size:.75rem;color:#C7D3EA;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+  .banner{position:relative;overflow:hidden;background:var(--paper-2);border-bottom:1px solid var(--line);padding:44px 0 36px}
+  .banner svg.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:220px;pointer-events:none}
+  .banner .wrap{position:relative}
+  .eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .eyebrow .tag{font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+  .kitchen{display:flex;align-items:center;gap:18px;margin:18px 0 6px}
+  .kitchen .seal{width:74px;height:74px;font-size:3rem;flex:none}
+  .kitchen .name{font-size:clamp(2.2rem,7vw,3.4rem);color:var(--ink);line-height:1}
+  .kitchen .en{display:block;font-size:.85rem;letter-spacing:.3em;color:var(--muted);text-transform:uppercase;margin-top:8px;font-family:'Segoe UI',sans-serif}
+  .banner h1{font-size:clamp(1.15rem,3.2vw,1.45rem);line-height:1.4;color:var(--ink);margin:18px 0 6px;max-width:760px}
+  .banner p.lead{margin:0;color:var(--ink-soft);font-style:italic}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:22px}
+  .fact{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--cinnabar);border-radius:4px;padding:9px 14px;color:var(--ink)}
+  .fact b{display:block;font-size:.72rem;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
   /* progress */
-  .progress{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .progress{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
   .progress ol{list-style:none;margin:0 auto;padding:10px 16px;display:flex;gap:6px;max-width:900px;overflow-x:auto}
-  .progress li{flex:1;min-width:90px}
-  .progress a{display:block;text-decoration:none;font-size:.78rem;line-height:1.3;color:var(--muted);border-top:4px solid var(--line);padding-top:6px}
-  .progress li.open a{color:var(--text);border-color:var(--gold)}
+  .progress li{flex:1;min-width:84px}
+  .progress a{display:block;text-decoration:none;font-size:.76rem;line-height:1.3;color:var(--muted);border-top:4px solid var(--line);padding-top:6px;border-radius:2px}
+  .progress a .brush{font-size:1.05rem;display:block;color:inherit}
+  .progress li.open a{color:var(--ink);border-color:var(--cinnabar)}
   /* sections */
-  h2{font-size:1.45rem;color:var(--primary-dark);margin:48px 0 16px;padding-bottom:8px;position:relative}
-  @media (prefers-color-scheme:dark){h2{color:#fff}}
-  h2::after{content:'';position:absolute;left:0;bottom:0;width:48px;height:3px;background:var(--gold);border-radius:2px}
-  h3{font-size:1.1rem;color:var(--primary);margin:0 0 8px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin:14px 0;box-shadow:0 2px 6px rgba(0,0,0,.04)}
+  h2{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:56px 0 16px;color:var(--ink);font-size:1.4rem}
+  h2 .seal{width:46px;height:46px;font-size:1.7rem;flex:none}
+  h2 .zh{font-size:1.9rem;color:var(--ink)}
+  h2 .en{font-family:'Noto Serif SC',Georgia,serif;font-weight:700}
+  h2 .time{font-size:.85rem;color:var(--muted);font-weight:400;font-family:'Segoe UI',sans-serif}
+  h2.plain{display:block}
+  .stroke{height:10px;margin:-6px 0 18px;width:160px;background:no-repeat left/100% 100% url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 10'%3E%3Cpath d='M2 6 C40 1 90 9 158 4' stroke='%23B3261E' stroke-width='3.5' fill='none' stroke-linecap='round' opacity='.85'/%3E%3C/svg%3E")}
+  h3{font-size:1.08rem;color:var(--ink);margin:0 0 8px;font-family:'Noto Serif SC',Georgia,serif}
+  h3 .brush{color:var(--cinnabar);font-size:1.25rem;margin-right:6px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px 22px;margin:14px 0;box-shadow:0 1px 0 rgba(31,26,23,.04)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
   .grid .card{margin:0}
-  .stage-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-  .stage-head .time{color:var(--muted);font-size:.9rem}
-  .num{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-weight:700;font-size:.95rem;flex:none}
-  .locked{border:2px dashed var(--line);border-radius:8px;padding:22px;text-align:center;color:var(--muted);background:transparent}
+  .dish{border-top:3px solid var(--jade)}
+  .dish.special{border-top-color:var(--cinnabar)}
+  .locked{border:1.5px dashed var(--line);border-radius:6px;padding:22px;text-align:center;color:var(--muted);background:transparent}
+  .locked .brush{display:block;font-size:2rem;color:var(--ink-soft);opacity:.7;letter-spacing:.1em}
+  .steam{display:inline-block;animation:steam 2.4s ease-in-out infinite}
+  @keyframes steam{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-4px);opacity:1}}
   .fresh{animation:flash 2.5s ease-out}
   @keyframes flash{from{box-shadow:0 0 0 4px var(--gold)}to{box-shadow:0 0 0 0 transparent}}
   ul,ol{padding-left:1.3em}
   li{margin:4px 0}
+  b,strong{color:var(--ink)}
   table{width:100%;border-collapse:collapse;font-size:.95rem}
   th,td{text-align:left;padding:8px 10px;border-top:1px solid var(--line);vertical-align:top}
-  th{background:var(--code)}
+  th{background:var(--code);color:var(--ink)}
   .tbl{overflow-x:auto}
-  .btn{display:inline-block;background:var(--primary);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-weight:600;font-size:.92rem;border:0;cursor:pointer}
-  .btn.gold{background:var(--gold);color:#1A202C}
-  .note{border-left:4px solid var(--gold);background:var(--code);padding:10px 14px;border-radius:0 6px 6px 0;margin:12px 0}
+  .btn{display:inline-block;background:var(--cinnabar);color:#FFF6EC;text-decoration:none;padding:9px 16px;border-radius:4px;font-weight:600;font-size:.92rem;border:0;cursor:pointer}
+  .btn:hover{background:var(--cinnabar-dark)}
+  .note{border-left:4px solid var(--gold);background:var(--code);padding:10px 14px;border-radius:0 4px 4px 0;margin:12px 0}
   .tick li::marker{content:'☐  '}
-  /* prompt boxes */
   .prompt{position:relative;margin:12px 0}
-  .prompt pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:16px;padding-top:40px;white-space:pre-wrap;word-break:break-word;font:14px/1.55 Consolas,'Courier New',monospace;margin:0;color:var(--text)}
+  .prompt pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:16px;padding-top:40px;white-space:pre-wrap;word-break:break-word;font:14px/1.55 Consolas,'Courier New',monospace;margin:0;color:var(--ink)}
   .prompt .label{position:absolute;top:10px;left:14px;font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
   .prompt .copy{position:absolute;top:6px;right:6px;padding:5px 12px;font-size:.8rem}
-  code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em}
-  .preview-bar{background:var(--gold);color:#1A202C;text-align:center;font-size:.85rem;padding:6px 16px;font-weight:600}
-  footer{background:#1A365D;color:#CBD5E1;margin-top:64px;padding:28px 0;font-size:.85rem;text-align:center}
-  footer a{color:#fff}
+  code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em;color:var(--ink)}
+  .preview-bar{background:var(--gold);color:#1F1A17;text-align:center;font-size:.85rem;padding:6px 16px;font-weight:600}
+  footer{margin-top:72px;padding:28px 0 40px;font-size:.85rem;text-align:center;color:var(--muted);border-top:1px solid var(--line)}
+  footer .seal{width:34px;height:34px;font-size:1.3rem;margin-bottom:8px}
 </style>
 </head>
 <body>
@@ -73,27 +96,37 @@
 <div id="previewBar" class="preview-bar" hidden>Facilitator preview: every stage is shown. Remove <code>?preview</code> from the address to see the participant view.</div>
 
 <header class="banner">
+  <svg class="hills" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 220 L0 150 C90 120 140 70 230 95 C300 115 330 60 420 75 C520 92 560 140 640 130 C760 118 900 160 1200 170 L1200 220Z" fill="currentColor" style="color:var(--ink)" opacity=".06"/>
+    <path d="M0 220 L0 200 C200 195 300 180 380 160 C470 120 540 40 640 60 C720 76 760 130 850 115 C930 100 980 50 1060 70 C1120 85 1170 110 1200 105 L1200 220Z" fill="currentColor" style="color:var(--ink)" opacity=".08"/>
+    <path d="M0 220 L0 190 C150 170 260 185 400 175 C560 162 700 195 860 182 C1000 170 1100 188 1200 180 L1200 220Z" fill="currentColor" style="color:var(--jade)" opacity=".12"/>
+    <circle cx="1040" cy="40" r="26" fill="currentColor" style="color:var(--cinnabar)" opacity=".75"/>
+  </svg>
   <div class="wrap">
-    <span class="tag">InTELECT UBD WORKSHOP</span>
-    <h1>Creating Interactive Lessons for Online Learning Using Artificial Intelligence and Microsoft Learning Zone for Canvas Integration</h1>
-    <p>Two ways to build interactive lessons for Canvas, and you will leave with at least one lesson of your own.</p>
+    <div class="eyebrow"><span class="tag">InTELECT UBD Workshop · 11 November 2026</span></div>
+    <div class="kitchen">
+      <span class="seal">味</span>
+      <div><span class="name brush">课程小厨房</span><span class="en">The Lesson Kitchen</span></div>
+    </div>
+    <h1 class="serif">Creating Interactive Lessons for Online Learning Using Artificial Intelligence and Microsoft Learning Zone for Canvas Integration</h1>
+    <p class="lead">From raw course notes to a lesson your students can taste. You cook, they learn.</p>
     <div class="facts">
       <div class="fact"><b>Date</b>Wednesday, 11 November 2026</div>
       <div class="fact"><b>Time</b>2:00 PM to 4:00 PM</div>
       <div class="fact"><b>Venue</b>【Venue】, Universiti Brunei Darussalam</div>
-      <div class="fact"><b>Facilitator</b>Tay Kok Jun, Language Centre</div>
+      <div class="fact"><b>Head Chef</b>Tay Kok Jun, Language Centre</div>
     </div>
   </div>
 </header>
 
 <nav class="progress" aria-label="Workshop progress">
   <ol id="progress">
-    <li class="open"><a href="#prepare">Before you come</a></li>
-    <li data-for="1"><a href="#stage1">1 · Foundations</a></li>
-    <li data-for="2"><a href="#stage2">2 · Showcase</a></li>
-    <li data-for="3a"><a href="#stage3">3 · Hands on</a></li>
-    <li data-for="4"><a href="#stage4">4 · Sharing</a></li>
-    <li data-for="5"><a href="#stage5">5 · Wrap up</a></li>
+    <li class="open"><a href="#prepare"><span class="brush">采买</span>Shopping list</a></li>
+    <li data-for="1"><a href="#stage1"><span class="brush">识器</span>1 · The kitchen</a></li>
+    <li data-for="2"><a href="#stage2"><span class="brush">示范</span>2 · Chef's table</a></li>
+    <li data-for="3a"><a href="#stage3"><span class="brush">掌勺</span>3 · Cook along</a></li>
+    <li data-for="4"><a href="#stage4"><span class="brush">品鉴</span>4 · Tasting</a></li>
+    <li data-for="5"><a href="#stage5"><span class="brush">食谱</span>5 · Recipes</a></li>
   </ol>
 </nav>
 
@@ -101,7 +134,8 @@
 
   <!-- ============ ALWAYS OPEN ============ -->
   <section id="about">
-    <h2>About this workshop</h2>
+    <h2><span class="seal">菜</span><span class="zh brush">菜单</span><span class="en">On the menu</span></h2>
+    <div class="stroke"></div>
     <div class="card">
       <p>This practical workshop shows educators how to create interactive online lessons for Canvas. Participants will learn two ways to build interactive content. The first method uses Microsoft Learning Zone to create and share lessons quickly. The second method uses artificial intelligence prompts and templates to build custom interactive lessons. The workshop includes examples from UBD language modules, including interactive learning web apps. Participants will follow step by step guidance to create their own content, host it using Google Sites, and publish it in Canvas. During the session, each participant will create at least one interactive lesson and share their work with colleagues.</p>
     </div>
@@ -117,9 +151,10 @@
   </section>
 
   <section id="prepare">
-    <h2>Before you come</h2>
+    <h2><span class="seal">采</span><span class="zh brush">采买</span><span class="en">Shopping list: before you come</span></h2>
+    <div class="stroke"></div>
     <div class="card">
-      <p>Please get these ready before 11 November so we can spend our time building, not installing.</p>
+      <p>Every good cook shops before service. Please get these ready before 11 November so we spend our time cooking, not installing.</p>
       <ul class="tick">
         <li><b>Bring your own laptop.</b> A Windows laptop is preferred, and a Copilot+ PC is even better.</li>
         <li><b>Install Microsoft Learning Zone</b> on your laptop before the workshop. 【Download link】</li>
@@ -132,15 +167,16 @@
   </section>
 
   <section id="schedule">
-    <h2>Programme</h2>
+    <h2><span class="seal">序</span><span class="zh brush">上菜顺序</span><span class="en">Order of service</span></h2>
+    <div class="stroke"></div>
     <div class="card tbl">
       <table>
-        <tr><th>Time</th><th>Stage</th><th>Length</th></tr>
-        <tr><td>2:00 PM</td><td>1. Foundations: what makes a lesson interactive, and which tool does what</td><td>15 min</td></tr>
-        <tr><td>2:15 PM</td><td>2. Showcase: Microsoft Learning Zone demo and examples from UBD Mandarin modules</td><td>15 min</td></tr>
-        <tr><td>2:30 PM</td><td>3. Hands on: build, test, publish, step by step</td><td>55 min</td></tr>
-        <tr><td>3:25 PM</td><td>4. Participant showcase</td><td>20 min</td></tr>
-        <tr><td>3:45 PM</td><td>5. Wrap up, resources, Q&amp;A and feedback</td><td>15 min</td></tr>
+        <tr><th>Time</th><th>Course</th><th>Length</th></tr>
+        <tr><td>2:00 PM</td><td><b>壹 识器 The kitchen</b>: what makes a lesson interactive, and which tool does what</td><td>15 min</td></tr>
+        <tr><td>2:15 PM</td><td><b>贰 名厨示范 Chef's table</b>: Microsoft Learning Zone demo and examples from UBD Mandarin modules</td><td>15 min</td></tr>
+        <tr><td>2:30 PM</td><td><b>叁 掌勺 Cook along</b>: prep, taste, plate up and serve, step by step</td><td>55 min</td></tr>
+        <tr><td>3:25 PM</td><td><b>肆 品鉴 Tasting table</b>: participants serve their lessons</td><td>20 min</td></tr>
+        <tr><td>3:45 PM</td><td><b>伍 食谱 Recipes to take home</b>: wrap up, resources, Q&amp;A and feedback</td><td>15 min</td></tr>
       </table>
     </div>
     <p style="color:var(--muted);font-size:.9rem">Each stage below opens during the workshop. This page updates on its own, so there is no need to refresh.</p>
@@ -148,27 +184,28 @@
 
   <!-- ============ STAGED CONTENT ============ -->
   <section id="stage1">
-    <h2><span class="stage-head"><span class="num">1</span>Foundations <span class="time">2:00 PM · 15 min</span></span></h2>
+    <h2><span class="seal">壹</span><span class="zh brush">识器</span><span class="en">The kitchen: foundations</span> <span class="time">2:00 PM · 15 min</span></h2>
+    <div class="stroke"></div>
     <div data-stage="1"></div>
     <template data-stage-content="1">
       <div class="card">
-        <h3>What makes a lesson interactive?</h3>
-        <p>A reading asks students to take information in. An interactive lesson asks them to <b>do something</b> with it and gives <b>feedback right away</b>: choose, sort, match, try again, see why.</p>
+        <h3><span class="brush">鲜</span>What makes a lesson interactive?</h3>
+        <p>A reading is a recipe card: students only look at it. An interactive lesson is a meal they cook themselves. It asks them to <b>do something</b> with it and gives <b>feedback right away</b>: choose, sort, match, try again, see why.</p>
       </div>
       <div class="grid">
-        <div class="card">
-          <h3>Canvas LMS</h3>
+        <div class="card dish">
+          <h3><span class="brush">桌</span>Canvas LMS · the dining table</h3>
           <p>UBD's official teaching platform. Every lesson must end up here.</p>
           <p style="color:var(--muted);font-size:.92rem">The Page editor accepts HTML and inline styles, but it removes JavaScript. Simple interactions work directly; complex apps need a host.</p>
         </div>
-        <div class="card">
-          <h3>Microsoft Learning Zone</h3>
-          <p><b>The quick route.</b> Turn your material into an interactive lesson in a few clicks and share it straight away.</p>
+        <div class="card dish">
+          <h3><span class="brush">快炒</span>Microsoft Learning Zone</h3>
+          <p><b>Quick Wok, the fast route.</b> Turn your material into an interactive lesson in a few clicks and share it straight away.</p>
           <p style="color:var(--muted);font-size:.92rem">Best for everyday lessons when time is short.</p>
         </div>
-        <div class="card">
-          <h3>AI + Google Sites</h3>
-          <p><b>The custom route.</b> AI writes a complete interactive web page from your prompt. Google Sites hosts it, and Canvas links or embeds it.</p>
+        <div class="card dish special">
+          <h3><span class="brush">私房菜</span>AI + Google Sites</h3>
+          <p><b>Chef's Special, the custom route.</b> AI writes a complete interactive web page from your prompt. Google Sites hosts it, and Canvas links or embeds it.</p>
           <p style="color:var(--muted);font-size:.92rem">Best for key units where you want full control.</p>
         </div>
       </div>
@@ -176,21 +213,22 @@
   </section>
 
   <section id="stage2">
-    <h2><span class="stage-head"><span class="num">2</span>Showcase <span class="time">2:15 PM · 15 min</span></span></h2>
+    <h2><span class="seal">贰</span><span class="zh brush">名厨示范</span><span class="en">Chef's table: showcase</span> <span class="time">2:15 PM · 15 min</span></h2>
+    <div class="stroke"></div>
     <div data-stage="2"></div>
     <template data-stage-content="2">
       <div class="grid">
         <div class="card">
-          <h3>Demo A: the quick route</h3>
+          <h3><span class="brush">快炒</span>Demo A: Quick Wok</h3>
           <p>Live demo of Microsoft Learning Zone: from a file to a shareable interactive lesson.</p>
         </div>
         <div class="card">
-          <h3>Demo B: the custom route</h3>
+          <h3><span class="brush">私房菜</span>Demo B: Chef's Special</h3>
           <p>Interactive lessons from UBD Mandarin modules, running on Google Sites and inside Canvas as students see them.</p>
         </div>
       </div>
       <div class="card">
-        <h3>Try them yourself</h3>
+        <h3>Taste them yourself</h3>
         <ul>
           <li>【Hamburger Pinyin learning app】: 【link】</li>
           <li>【Learning game app】: 【link】</li>
@@ -201,19 +239,20 @@
   </section>
 
   <section id="stage3">
-    <h2><span class="stage-head"><span class="num">3</span>Hands on <span class="time">2:30 PM · 55 min</span></span></h2>
+    <h2><span class="seal">叁</span><span class="zh brush">掌勺</span><span class="en">Cook along: hands on</span> <span class="time">2:30 PM · 55 min</span></h2>
+    <div class="stroke"></div>
 
     <div data-stage="3a"></div>
     <template data-stage-content="3a">
       <div class="card">
-        <h3>Step 1 · Prepare your material and the prompt (10 min)</h3>
+        <h3><span class="brush">备料</span>Step 1 · Prep the ingredients (10 min)</h3>
         <ol>
           <li>Pick <b>one short topic</b> from your course material: one concept, one reading, or one set of questions.</li>
           <li>Open ChatGPT, Gemini, or Claude.</li>
-          <li>Copy the template below, fill in the parts in <b>[square brackets]</b>, and attach or paste your material.</li>
+          <li>Copy the recipe below, fill in the parts in <b>[square brackets]</b>, and attach or paste your material.</li>
         </ol>
         <div class="prompt">
-          <span class="label">Prompt template · Interactive lesson</span>
+          <span class="label">Recipe · Interactive lesson prompt</span>
           <button class="btn copy" type="button">Copy</button>
 <pre>You are an expert instructional designer and web developer.
 
@@ -244,15 +283,15 @@ Here is my material:
     <div data-stage="3b"></div>
     <template data-stage-content="3b">
       <div class="card">
-        <h3>Step 2 · Try it, check it, improve it (15 min)</h3>
+        <h3><span class="brush">试味</span>Step 2 · Taste and adjust the seasoning (15 min)</h3>
         <ol>
           <li><b>Preview it.</b> Most AI tools show a preview of the code (ChatGPT Canvas, Gemini Canvas, Claude Artifacts). If not, copy the code, paste it into Notepad, and save as <code>lesson.html</code> (set "Save as type" to <b>All files</b> and encoding to <b>UTF-8</b>). Double click the file to open it in your browser.</li>
-          <li><b>Play it as a student.</b> Answer some questions right and some wrong.</li>
+          <li><b>Taste it as a student.</b> Answer some questions right and some wrong.</li>
           <li><b>Check the content.</b> Is every answer correct? Is anything invented? You are the subject expert.</li>
           <li><b>Ask for changes</b> in plain words. Some examples:</li>
         </ol>
         <div class="prompt">
-          <span class="label">Follow up prompts</span>
+          <span class="label">Seasoning · follow up prompts</span>
           <button class="btn copy" type="button">Copy</button>
 <pre>Question 3 has the wrong answer. The correct answer is [ ]. Please fix it and give me the full updated file.
 
@@ -271,11 +310,11 @@ At the end, show a summary of which questions the student got wrong, with the co
     <div data-stage="3c"></div>
     <template data-stage-content="3c">
       <div class="card">
-        <h3>Step 3 · Publish to Canvas (20 min)</h3>
-        <p>Choose the path that fits your lesson.</p>
+        <h3><span class="brush">上桌</span>Step 3 · Plate up and serve in Canvas (20 min)</h3>
+        <p>Choose the plate that fits your dish.</p>
         <div class="grid">
           <div class="card">
-            <h3>Path A: straight into a Canvas Page</h3>
+            <h3>Plate A: straight onto a Canvas Page</h3>
             <p>For simple lessons <b>without JavaScript</b> (reveal answers, flashcards, styled notes).</p>
             <ol>
               <li>Ask the AI for a Canvas safe version (prompt below).</li>
@@ -285,7 +324,7 @@ At the end, show a summary of which questions the student got wrong, with the co
             </ol>
           </div>
           <div class="card">
-            <h3>Path B: Google Sites, then Canvas</h3>
+            <h3>Plate B: Google Sites, then Canvas</h3>
             <p>For lessons <b>with JavaScript</b> (quizzes with scores, drag and drop, games).</p>
             <ol>
               <li>Go to <a href="https://sites.google.com" target="_blank" rel="noopener">sites.google.com</a> and create a blank site.</li>
@@ -298,13 +337,13 @@ At the end, show a summary of which questions the student got wrong, with the co
           </div>
         </div>
         <div class="prompt">
-          <span class="label">Path A · Canvas safe version</span>
+          <span class="label">Plate A · Canvas safe version</span>
           <button class="btn copy" type="button">Copy</button>
 <pre>Rewrite this lesson so it can be pasted into the Canvas LMS Page HTML editor.
 Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; or &lt;body&gt; tags. Use inline style="" attributes only. For interactivity, use &lt;details&gt; and &lt;summary&gt; to reveal answers and feedback. Keep it responsive with percentage widths.</pre>
         </div>
         <div class="prompt">
-          <span class="label">Path B · Embed a Google Site in a Canvas Page</span>
+          <span class="label">Plate B · Embed a Google Site in a Canvas Page</span>
           <button class="btn copy" type="button">Copy</button>
 <pre>&lt;iframe src="PASTE_YOUR_GOOGLE_SITE_LINK_HERE" width="100%" height="800" style="border:0;" loading="lazy" title="Interactive lesson"&gt;&lt;/iframe&gt;</pre>
         </div>
@@ -315,7 +354,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
     <div data-stage="3d"></div>
     <template data-stage-content="3d">
       <div class="card">
-        <h3>Step 4 · Microsoft Learning Zone (10 min)</h3>
+        <h3><span class="brush">快炒</span>Step 4 · Quick Wok with Microsoft Learning Zone (10 min)</h3>
         <ol>
           <li>Open <b>Microsoft Learning Zone</b> on your laptop.</li>
           <li>Start a new lesson and add your course material (for example a PDF, Word or PowerPoint file).</li>
@@ -323,18 +362,19 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
           <li>Share the lesson and copy its link.</li>
           <li>In Canvas, add the link to your Module as an <b>External URL</b>, or place it in a Page.</li>
         </ol>
-        <div class="note">Goal for Stage 3: <b>at least one complete interactive lesson in Canvas</b>, by either route.</div>
+        <div class="note">Goal for this course: <b>at least one complete interactive lesson served in Canvas</b>, by either route.</div>
       </div>
     </template>
   </section>
 
   <section id="stage4">
-    <h2><span class="stage-head"><span class="num">4</span>Participant showcase <span class="time">3:25 PM · 20 min</span></span></h2>
+    <h2><span class="seal">肆</span><span class="zh brush">品鉴</span><span class="en">Tasting table: participant showcase</span> <span class="time">3:25 PM · 20 min</span></h2>
+    <div class="stroke"></div>
     <div data-stage="4"></div>
     <template data-stage-content="4">
       <div class="card">
-        <p>Four or five colleagues from different disciplines will show their lesson on the main screen, about 3 to 4 minutes each.</p>
-        <h3>When you share, tell us:</h3>
+        <p>Four or five colleagues from different disciplines will serve their dish on the main screen, about 3 to 4 minutes each.</p>
+        <h3>When you serve, tell us:</h3>
         <ol>
           <li>The teaching problem you wanted to solve.</li>
           <li>Which route you chose (Learning Zone or AI + Google Sites) and why.</li>
@@ -346,13 +386,14 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
   </section>
 
   <section id="stage5">
-    <h2><span class="stage-head"><span class="num">5</span>Wrap up &amp; Q&amp;A <span class="time">3:45 PM · 15 min</span></span></h2>
+    <h2><span class="seal">伍</span><span class="zh brush">食谱</span><span class="en">Recipes to take home: wrap up &amp; Q&amp;A</span> <span class="time">3:45 PM · 15 min</span></h2>
+    <div class="stroke"></div>
     <div data-stage="5"></div>
     <template data-stage-content="5">
       <div class="card tbl">
-        <h3>Which route, when?</h3>
+        <h3><span class="brush">点菜</span>Which dish, when?</h3>
         <table>
-          <tr><th></th><th>Microsoft Learning Zone</th><th>AI + Google Sites</th></tr>
+          <tr><th></th><th>快炒 Quick Wok<br><small>Microsoft Learning Zone</small></th><th>私房菜 Chef's Special<br><small>AI + Google Sites</small></th></tr>
           <tr><td>Best for</td><td>Everyday lessons, quick turnaround</td><td>Key units, custom activities</td></tr>
           <tr><td>Time to build</td><td>Minutes</td><td>30 to 60 minutes</td></tr>
           <tr><td>Control over design</td><td>Limited</td><td>Full</td></tr>
@@ -360,15 +401,15 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
         </table>
       </div>
       <div class="card">
-        <h3>Take it with you</h3>
+        <h3>Take the recipes home</h3>
         <ul>
-          <li>All prompt templates stay on this page. Bookmark it.</li>
+          <li>All recipes (prompt templates) stay on this page. Bookmark it.</li>
           <li>【Slides】: 【link】</li>
           <li>【Resource pack】: 【link】</li>
         </ul>
       </div>
       <div class="card" style="text-align:center">
-        <h3>Your feedback</h3>
+        <h3><span class="brush">谢</span>How was the meal?</h3>
         <p>Please take two minutes to complete the InTELECT feedback form.</p>
         <a class="btn gold" href="#" target="_blank" rel="noopener">【Feedback form】</a>
       </div>
@@ -376,7 +417,8 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
+    <h2><span class="seal">厨</span><span class="zh brush">主厨</span><span class="en">The head chef</span></h2>
+    <div class="stroke"></div>
     <div class="card">
       <p><b>Tay Kok Jun</b>, Education Officer, Language Centre, Universiti Brunei Darussalam<br>
       Google Certified Educator · Microsoft Elevate Educator Expert 2026–2027<br>
@@ -385,7 +427,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
   </section>
 </main>
 
-<footer>InTELECT UBD · Universiti Brunei Darussalam · 11 November 2026</footer>
+<footer><span class="seal">味</span><br>The Lesson Kitchen · InTELECT UBD · Universiti Brunei Darussalam · 11 November 2026</footer>
 
 <script>
 // Stages open when their key is listed in unlock.json. The page checks every 20 seconds.
@@ -404,7 +446,7 @@ function render(unlocked, first) {
       if (!first) slot.querySelectorAll('.card').forEach(c => c.classList.add('fresh'));
       opened.add(key);
     } else if (!slot.firstChild) {
-      slot.innerHTML = '<div class="card locked">🔒 Opens during the workshop</div>';
+      slot.innerHTML = '<div class="locked"><span class="brush">火候未到</span><span class="steam">♨</span> Still simmering. This course is served during the workshop.</div>';
     }
   });
   document.querySelectorAll('#progress li[data-for]').forEach(li => {
