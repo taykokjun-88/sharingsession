@@ -14,7 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' rx='10' fill='%23B3261E'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23FFF6EC' font-family='serif'%3E味%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%80%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BA%8C%E4%BC%8D%E4%BC%A0%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%89%BF%E6%8E%8C%E6%96%99%E6%96%B0%E6%96%B9%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A7%98%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E8%B7%91%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@600;700&display=swap&text=%E4%B8%80%E4%B8%8A%E4%B8%BB%E4%B9%B0%E4%BA%8C%E4%BC%8D%E4%BC%A0%E5%80%99%E5%88%B0%E5%8B%BA%E5%8D%95%E5%8E%A8%E5%8F%81%E5%8F%B0%E5%90%8D%E5%91%B3%E5%93%81%E5%99%A8%E5%A3%B9%E5%A4%87%E5%B0%8F%E5%BA%8F%E5%BF%AB%E6%88%BF%E6%89%BF%E6%8E%8C%E6%96%99%E6%96%B0%E6%96%B9%E6%9C%AA%E6%A1%8C%E7%81%AB%E7%82%92%E7%82%B9%E7%A4%BA%E7%A7%81%E7%A7%98%E7%A8%8B%E8%82%86%E8%8C%83%E8%8F%9C%E8%AF%86%E8%AF%95%E8%AF%BE%E8%B0%A2%E8%B0%B1%E8%B4%B0%E8%B7%91%E9%87%87%E9%89%B4%E9%A1%BA%E9%A3%9F%E9%B2%9C%C2%B7" rel="stylesheet">
 <style>
   :root{
     --paper:#F6F0E4;--paper-2:#EFE6D3;--card:#FFFCF5;--ink:#1F1A17;--ink-soft:#4A423B;--muted:#7A6E62;
@@ -49,6 +49,19 @@
   .toast.show{transform:none}
   .toast img{width:64px}
   .toast .brush{color:var(--cinnabar);font-size:1.3rem;display:block;font-weight:400}
+  .serve{display:grid;grid-template-columns:1fr 170px;gap:20px;align-items:center}
+  .qr{margin:0;text-align:center;font-size:.8rem;color:var(--muted)}
+  .qr img{width:170px;height:170px;background:#fff;padding:8px;border-radius:8px;border:1px solid var(--line)}
+  @media (max-width:560px){.serve{grid-template-columns:1fr}.qr{display:none}}
+  .count{font-family:'Segoe UI',sans-serif;font-size:.85rem;color:var(--muted);font-weight:400}
+  .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .dish-card{border:1px solid var(--line);border-top:3px solid var(--cinnabar);border-radius:6px;padding:14px 16px;background:var(--paper);display:flex;flex-direction:column;gap:4px}
+  .dish-card .title{font-family:'Noto Serif SC',Georgia,serif;font-weight:700;color:var(--ink);line-height:1.35}
+  .dish-card .by{font-size:.85rem;color:var(--muted)}
+  .dish-card .tool{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;color:var(--jade);border:1px solid var(--jade);border-radius:99px;padding:0 8px;margin-right:auto}
+  .dish-card .love{font-size:.9rem;font-style:italic;margin:4px 0}
+  .dish-card .btn{margin-top:auto;align-self:flex-start;padding:6px 14px;font-size:.85rem}
+  .gallery .empty{grid-column:1/-1;text-align:center;color:var(--muted);margin:8px 0}
   footer .baozi{width:110px;margin:0 auto 6px}
   .guide{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;margin:14px 0}
   .guide .art{width:150px}
@@ -434,17 +447,29 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
     <template data-stage-content="4">
       <div class="guide">
         <img class="art" src="assets/img/shao-cheering.webp" loading="lazy" alt="Xiao Shao clapping happily">
-        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Your turn to serve! Every dish at this table gets a round of applause.</div>
+        <div class="bubble"><b class="who">Xiao Shao 小勺</b>Your turn to serve! Put your Chef&#39;s Special on the Tasting Table so everyone can try it.</div>
+      </div>
+      <div class="card serve">
+        <div>
+          <h3><span class="brush">上菜</span>Serve your Chef&#39;s Special</h3>
+          <p>Share the interactive lesson you cooked with AI today. It appears on the Tasting Table below within a minute, so colleagues can open and try it.</p>
+          <p><a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfuXne7R3wyRlJnnW2v_i91a4_4lVNGwLESEj5GU6fWLklOww/viewform" target="_blank" rel="noopener">Serve my dish</a></p>
+          <p style="color:var(--muted);font-size:.9rem">Your display name and lesson link will be visible to anyone with this page. Please make sure your lesson contains no student data.</p>
+        </div>
+        <figure class="qr"><img src="assets/img/serve-qr.svg" alt="QR code for the Tasting Table submission form"><figcaption>Scan to serve</figcaption></figure>
+      </div>
+      <div class="card">
+        <h3><span class="brush">品鉴台</span>The Tasting Table <span id="dishCount" class="count"></span></h3>
+        <div id="gallery" class="gallery"><p class="empty">Loading the Tasting Table…</p></div>
       </div>
       <div class="card">
         <p>Four or five colleagues from different disciplines will serve their dish on the main screen, about 3 to 4 minutes each.</p>
         <h3>When you serve, tell us:</h3>
         <ol>
           <li>The teaching problem you wanted to solve.</li>
-          <li>Which route you chose (Learning Zone or AI + Google Sites) and why.</li>
+          <li>Which AI tool you used, and the one change to the recipe that made the biggest difference.</li>
           <li>The interaction you are most pleased with, and what you would improve next.</li>
         </ol>
-        <p>【Optional: link for participants to submit their lesson URL】</p>
       </div>
     </template>
   </section>
@@ -581,6 +606,7 @@ function render(unlocked, first) {
       slot.replaceChildren(tpl.content.cloneNode(true));
       if (!first) { slot.querySelectorAll('.card').forEach(c => c.classList.add('fresh')); served = true; }
       opened.add(key);
+      if (key === '4') setTimeout(loadGallery, 100);
     } else if (!slot.firstChild) {
       slot.innerHTML = '<div class="locked"><img class="art baozi" src="assets/img/baozi-sleeping.webp" alt="Baozi asleep in a bamboo steamer"><span class="brush">火候未到</span><span class="steam">♨</span> Still simmering. This course is served during the workshop.</div>';
     }
@@ -610,8 +636,58 @@ document.addEventListener('click', e => {
   });
 });
 
+// Tasting Table gallery: reads the Google Form responses sheet (shared as "anyone with the link can view")
+const SHEET = 'https://docs.google.com/spreadsheets/d/13m-46SXWrROOEGwEVsn_uFwgtMiTuX2rmniCMucz7jY/gviz/tq?gid=619234008&headers=1';
+function loadGallery() {
+  if (!document.getElementById('gallery')) return;
+  const old = document.getElementById('sheetScript');
+  if (old) old.remove();
+  const sc = document.createElement('script');
+  sc.id = 'sheetScript';
+  sc.src = SHEET + '&tqx=responseHandler:showGallery&t=' + Date.now();
+  sc.onerror = () => showGallery(null);
+  document.body.appendChild(sc);
+}
+function showGallery(res) {
+  const box = document.getElementById('gallery');
+  if (!box) return;
+  if (!res || res.status === 'error') {
+    box.innerHTML = '<p class="empty">The Tasting Table could not be loaded. Please try again in a moment.</p>';
+    return;
+  }
+  const labels = res.table.cols.map(c => (c.label || '').toLowerCase());
+  const col = word => labels.findIndex(l => l.includes(word));
+  const iName = col('display name'), iTitle = col('lesson title'), iLink = col('link'), iTool = col('ai tool'), iLove = col('love');
+  const val = (row, i) => (i >= 0 && row.c[i] && row.c[i].v != null) ? String(row.c[i].v).trim() : '';
+  const dishes = res.table.rows.map(r => ({
+    name: val(r, iName), title: val(r, iTitle), link: val(r, iLink), tool: val(r, iTool), love: val(r, iLove)
+  })).filter(d => d.title || d.link).reverse();
+  document.getElementById('dishCount').textContent = dishes.length ? '· ' + dishes.length + (dishes.length === 1 ? ' dish' : ' dishes') + ' served' : '';
+  if (!dishes.length) {
+    box.innerHTML = '<p class="empty">No dishes yet. Be the first to serve!</p>';
+    return;
+  }
+  box.replaceChildren(...dishes.map(d => {
+    const card = document.createElement('div');
+    card.className = 'dish-card';
+    const add = (tag, cls, text) => { if (!text) return; const e = document.createElement(tag); e.className = cls; e.textContent = text; card.appendChild(e); };
+    add('span', 'tool', d.tool);
+    add('div', 'title', d.title || 'Untitled dish');
+    add('div', 'by', d.name ? 'by ' + d.name : '');
+    add('p', 'love', d.love ? '“' + d.love + '”' : '');
+    if (/^https:\/\//i.test(d.link)) {
+      const a = document.createElement('a');
+      a.className = 'btn'; a.href = d.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Taste it';
+      card.appendChild(a);
+    }
+    return card;
+  }));
+}
+
 check(true);
 setInterval(() => check(false), 20000);
+setTimeout(loadGallery, 500);
+setInterval(loadGallery, 20000);
 </script>
 </body>
 </html>
