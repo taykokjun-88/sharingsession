@@ -79,6 +79,10 @@
   .bubble b.who{display:block;font-style:normal;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cinnabar)}
   .with-art{display:grid;grid-template-columns:1fr 170px;gap:20px;align-items:center}
   .with-art .art{width:170px}
+  .card .icon{width:120px;margin:-6px auto 6px}
+  .banner-art{width:100%;max-width:560px;margin:4px auto 10px}
+  .divider{width:min(440px,80%);margin:56px auto -24px;opacity:.9}
+  .divider.flip{transform:scaleX(-1)}
   .card .top-art{width:100%;max-width:300px;margin:0 auto 10px}
   .chef-card{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}
   .chef-card .art{width:150px}
@@ -260,6 +264,8 @@
   </section>
 
   <!-- ============ STAGED CONTENT ============ -->
+  <img class="art divider" src="assets/img/bamboo.webp" loading="lazy" alt="">
+
   <section id="stage1">
     <h2><span class="seal">壹</span><span class="zh brush">识器</span><span class="en">The kitchen: foundations</span> <span class="time">2:00 PM · 15 min</span></h2>
     <div class="stroke"></div>
@@ -275,16 +281,19 @@
       </div>
       <div class="grid">
         <div class="card dish">
+          <img class="art icon" src="assets/img/icon-table.webp" loading="lazy" alt="A small wooden table set with a rice bowl, chopsticks and a teacup">
           <h3><span class="brush">桌</span>Canvas LMS · the dining table</h3>
           <p>UBD's official teaching platform. Every lesson must end up here.</p>
           <p style="color:var(--muted);font-size:.92rem">The Page editor accepts HTML and inline styles, but it removes JavaScript. Simple interactions work directly; complex apps need a host.</p>
         </div>
         <div class="card dish">
+          <img class="art icon" src="assets/img/icon-wok.webp" loading="lazy" alt="Vegetables jumping out of a wok over a flame">
           <h3><span class="brush">快炒</span>Microsoft Learning Zone</h3>
           <p><b>Quick Wok, the fast route.</b> Turn your material into an interactive lesson in a few clicks and share it straight away.</p>
           <p style="color:var(--muted);font-size:.92rem">Best for everyday lessons when time is short.</p>
         </div>
         <div class="card dish special">
+          <img class="art icon" src="assets/img/icon-plate.webp" loading="lazy" alt="A finely plated dish with chef's tweezers beside it">
           <h3><span class="brush">私房菜</span>AI + Google Sites</h3>
           <p><b>Chef's Special, the custom route.</b> AI writes a complete interactive web page from your prompt. Google Sites hosts it, and Canvas links or embeds it.</p>
           <p style="color:var(--muted);font-size:.92rem">Best for key units where you want full control.</p>
@@ -490,6 +499,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
           <h3><span class="brush">品鉴台</span>The Tasting Table <span id="dishCount" class="count"></span></h3>
           <button id="randomDish" class="btn gold" type="button" hidden>🎲 Pick a dish at random</button>
         </div>
+        <img class="art banner-art" src="assets/img/tasting-table.webp" loading="lazy" alt="The Head Chef, Xiao Shao and two Baozi tasting many dishes around a round banquet table">
         <p style="margin-top:0">The Tasting Table stays open after the workshop. Taste any colleague&#39;s dish whenever you like, borrow good ideas, and learn from each other.</p>
         <div id="gallery" class="gallery"><p class="empty">Loading the Tasting Table…</p></div>
       </div>
@@ -598,6 +608,8 @@ Use British English and keep it under 200 lines. Give me the complete file in on
       </div>
     </template>
   </section>
+
+  <img class="art divider flip" src="assets/img/bamboo.webp" loading="lazy" alt="">
 
   <section id="contact">
     <h2><span class="seal">厨</span><span class="zh brush">主厨</span><span class="en">The head chef</span></h2>
