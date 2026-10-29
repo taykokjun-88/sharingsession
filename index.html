@@ -79,6 +79,15 @@
   .bubble b.who{display:block;font-style:normal;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cinnabar)}
   .with-art{display:grid;grid-template-columns:1fr 170px;gap:20px;align-items:center}
   .with-art .art{width:170px}
+  .menu-wrap{display:grid;grid-template-columns:1fr 150px;gap:24px;align-items:start}
+  .menu-wrap .menu-scroll{width:150px;position:sticky;top:90px}
+  @media (max-width:700px){.menu-wrap{grid-template-columns:1fr}.menu-wrap .menu-scroll{display:none}}
+  .trolley{width:min(300px,70%);margin:0 auto 6px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 14px;align-items:end}
+  #schedule td:first-child{white-space:nowrap}
+  .pair figure{margin:0;text-align:center;font-size:.88rem;color:var(--muted)}
+  .pair img{width:100%;max-width:260px;margin:0 auto 6px}
+  .pair .brush{color:var(--cinnabar);font-size:1.2rem;margin-right:6px}
   .card .icon{width:120px;margin:-6px auto 6px}
   .banner-art{width:100%;max-width:560px;margin:4px auto 10px}
   .divider{width:min(440px,80%);margin:56px auto -24px;opacity:.9}
@@ -214,7 +223,9 @@
   <section id="about">
     <h2><span class="seal">菜</span><span class="zh brush">菜单</span><span class="en">On the menu</span></h2>
     <div class="stroke"></div>
-    <div class="card">
+    <div class="menu-wrap">
+    <div>
+    <div class="card" style="margin-top:0">
       <p>This practical workshop shows educators how to create interactive online lessons for Canvas. Participants will learn two ways to build interactive content. The first method uses Microsoft Learning Zone to create and share lessons quickly. The second method uses artificial intelligence prompts and templates to build custom interactive lessons. The workshop includes examples from UBD language modules, including interactive learning web apps. Participants will follow step by step guidance to create their own content, host it using Google Sites, and publish it in Canvas. During the session, each participant will create at least one interactive lesson and share their work with colleagues.</p>
     </div>
     <div class="card">
@@ -225,6 +236,9 @@
         <li>Design and generate interactive lesson components (such as scenario based formative exercises and interactive activities) using structured AI prompt templates.</li>
         <li>Publish and integrate interactive web content into UBD Canvas LMS modules using native HTML embedding and Google Sites.</li>
       </ol>
+    </div>
+    </div>
+    <img class="art menu-scroll" src="assets/img/menu-scroll.webp" loading="lazy" alt="A hanging menu scroll showing five small dishes, one for each course of the workshop">
     </div>
   </section>
 
@@ -250,6 +264,7 @@
   <section id="schedule">
     <h2><span class="seal">序</span><span class="zh brush">上菜顺序</span><span class="en">Order of service</span></h2>
     <div class="stroke"></div>
+    <img class="art trolley" src="assets/img/dimsum-trolley.webp" loading="lazy" alt="Xiao Shao pushing a dim sum trolley while Baozi waves from the top steamer">
     <div class="card tbl">
       <table>
         <tr><th>Time</th><th>Course</th><th>Length</th></tr>
@@ -527,6 +542,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
       </div>
       <div class="card tbl">
         <h3><span class="brush">点菜</span>Which dish, when?</h3>
+        <img class="art banner-art" src="assets/img/two-dishes.webp" loading="lazy" alt="A hearty stir fry beside an elegantly plated chef's special">
         <table>
           <tr><th></th><th>快炒 Quick Wok<br><small>Microsoft Learning Zone</small></th><th>私房菜 Chef's Special<br><small>AI + Google Sites</small></th></tr>
           <tr><td>Best for</td><td>Everyday lessons, quick turnaround</td><td>Key units, custom activities</td></tr>
@@ -537,6 +553,10 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
       </div>
       <div class="card">
         <h3><span class="brush">秘方</span>From recipe to house recipe: AI Skills</h3>
+        <div class="pair">
+          <figure><img class="art" src="assets/img/recipe-scroll.webp" loading="lazy" alt="A recipe scroll with spices scattered freely around it"><figcaption><span class="brush">食谱</span>Prompt template: the cook improvises</figcaption></figure>
+          <figure><img class="art" src="assets/img/chef-weighing.webp" loading="lazy" alt="The Head Chef weighing ingredients on a steelyard scale while Xiao Shao checks a list"><figcaption><span class="brush">秘方</span>Skill: weighed and checked every time</figcaption></figure>
+        </div>
         <p>A <b>prompt template</b> is like a recipe card. It tells you what goes in, but the cook still decides the heat, the timing and how much salt. Every time you use it, the AI improvises the details, so the dish can taste a little different each time. Chefs call this <b>跑味</b>: the flavour drifts.</p>
         <p>A <b>Skill</b> is the restaurant&#39;s house recipe. Fixed steps, exact quantities, and measuring tools: a checklist and even a small checking script that tests the dish before it leaves the kitchen. Same taste, every time.</p>
         <div class="tbl">
@@ -552,6 +572,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
       </div>
       <div class="card">
         <h3><span class="brush">传承</span>Turn your experience into a Skill</h3>
+        <img class="art banner-art" src="assets/img/chef-writing.webp" loading="lazy" alt="The Head Chef writing a recipe scroll with a brush while Xiao Shao takes notes">
         <p>The best Skill comes from a dish you have already cooked well. After a chat where you got a lesson you are happy with:</p>
         <ol>
           <li>Stay in the same conversation, so the AI remembers every fix you asked for.</li>
