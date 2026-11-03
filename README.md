@@ -8,6 +8,7 @@ Stages open when their key is listed in `unlock.json`. The page checks every 20 
 
 | Key | Stage |
 |---|---|
+| `0` | Order of service (also opens by itself at 2:00 PM, 11 November, Brunei time) |
 | `1` | Foundations |
 | `2` | Showcase |
 | `3a` `3b` `3c` `3d` | Hands on: 3a Quick Wok, 3b Prep, 3c Taste, 3d Plate up |

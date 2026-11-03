@@ -23,7 +23,7 @@ Edit `unlock.json` on GitHub (repo `taykokjun-88/sharingsession`, pencil icon, t
 { "unlocked": ["1", "2", "3a"] }
 ```
 
-Keys in order: `1`, `2`, `3a`, `3b`, `3c`, `3d`, `4`, `5`.
+Keys in order: `0` (order of service, opens by itself at 2:00 PM), `1`, `2`, `3a`, `3b`, `3c`, `3d`, `4`, `5`.
 
 ## After the workshop
 

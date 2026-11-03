@@ -270,6 +270,8 @@
   <section id="schedule">
     <h2><span class="seal">序</span><span class="zh brush">奉茶顺序</span><span class="en">Order of service</span></h2>
     <div class="stroke"></div>
+    <div data-stage="0" data-zh="奉茶顺序" data-label="The order of service for this afternoon" data-locked="Opens at 2:00 PM on Wednesday, 11 November."></div>
+    <template data-stage-content="0">
     <img class="art trolley" src="assets/img/tea-cart.webp" loading="lazy" alt="Xiao Cha carrying a tray of five teapots while the little elephant tea pet waves">
     <div class="card tbl">
       <table>
@@ -282,6 +284,7 @@
       </table>
     </div>
     <p style="color:var(--muted);font-size:.9rem">Each stage below opens during the workshop. This page updates on its own, so there is no need to refresh.</p>
+    </template>
   </section>
 
   <!-- ============ STAGED CONTENT ============ -->
@@ -680,12 +683,15 @@ document.addEventListener('click', e => {
   if (sum) sum.parentElement.dataset.touched = '1';
 });
 
+// Some sections also open by themselves at a set time (Brunei time, UTC+8)
+const OPENS_AT = { '0': Date.parse('2026-11-11T14:00:00+08:00') };
+
 function render(unlocked, first) {
   const fresh = [];
   document.querySelectorAll('[data-stage]').forEach(slot => {
     const key = slot.dataset.stage;
     if (opened.has(key)) return;
-    if (preview || unlocked.includes(key)) {
+    if (preview || unlocked.includes(key) || (OPENS_AT[key] && Date.now() >= OPENS_AT[key])) {
       // each served course is a fold: click to open, so the page stays tidy as more courses arrive
       const tpl = document.querySelector('[data-stage-content="' + key + '"]');
       const d = document.createElement('details');
@@ -702,7 +708,7 @@ function render(unlocked, first) {
       const prev = slot.previousElementSibling;
       const firstInSection = !(prev && prev.matches('template'));
       if (firstInSection) {
-        slot.innerHTML = '<div class="locked"><img class="art baozi" src="assets/img/pet-sleeping.webp" alt="The little elephant tea pet asleep beside a teapot"><span class="brush">水未沸</span><span class="steam">♨</span> The water is still heating. This course is served during the workshop.</div>';
+        slot.innerHTML = '<div class="locked"><img class="art baozi" src="assets/img/pet-sleeping.webp" alt="The little elephant tea pet asleep beside a teapot"><span class="brush">水未沸</span><span class="steam">♨</span> The water is still heating. ' + (slot.dataset.locked || 'This course is served during the workshop.') + '</div>';
       } else {
         slot.innerHTML = '<div class="locked-row"><span class="brush"></span><span class="lbl"></span><span class="tag">🔒 水未沸</span></div>';
         slot.querySelector('.brush').textContent = slot.dataset.zh;
