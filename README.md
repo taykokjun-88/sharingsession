@@ -17,4 +17,4 @@ Stages open when their key is listed in `unlock.json`. The page checks every 20 
 
 Example: `{ "unlocked": ["1", "2", "3a"] }`
 
-Add `?preview` to the page address to see every stage.
+Add `?preview=<your preview code>` to the page address to see every stage.

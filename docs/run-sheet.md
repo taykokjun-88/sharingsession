@@ -4,7 +4,7 @@ Keep this open on your phone. To unlock a course, send the words in the last col
 
 | Time | Slide | Course | Say to Claude |
 |---|---|---|---|
-| 1:30 PM | | Set up: projector, open the page with `?preview`, open the deck, open Claude and Learning Zone | |
+| 1:30 PM | | Set up: projector, open the page with `?preview=` and your preview code, open the deck, open Claude and Learning Zone | |
 | 2:00 PM | 1 to 5 | Welcome, tea host, tea list, order of service, open the page | |
 | 2:05 PM | 6 | 壹 识器 The tea room | **解开 1** |
 | 2:15 PM | 9 | 贰 观茶 Watch the brew (Demo A Learning Zone, Demo B Mandarin apps) | **解开 2** |

@@ -182,7 +182,7 @@
 </head>
 <body>
 
-<div id="previewBar" class="preview-bar" hidden>Facilitator preview: every stage is shown. Remove <code>?preview</code> from the address to see the participant view.</div>
+<div id="previewBar" class="preview-bar" hidden>Facilitator preview: every stage is shown. Remove the preview code from the address to see the participant view.</div>
 
 <header class="banner">
   <svg class="hills" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
@@ -667,8 +667,17 @@ Use British English and keep it under 200 lines. Give me the complete file in on
 <script>
 // Stages open when their key is listed in unlock.json. The page checks every 20 seconds.
 // Add ?preview to the address to see every stage.
-const preview = new URLSearchParams(location.search).has('preview');
-if (preview) document.getElementById('previewBar').hidden = false;
+// Facilitator preview: ?preview=<code>. Only a hash of the code is stored here.
+const PREVIEW_HASH = 'b31182bff4c9d0020b279ff47609569a075afe719d460efa0333d7a50832b656';
+let preview = false;
+async function checkPreview() {
+  const code = new URLSearchParams(location.search).get('preview');
+  if (!code || !(window.crypto && crypto.subtle)) return;
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(code.trim()));
+  const hex = [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  preview = hex === PREVIEW_HASH;
+  if (preview) document.getElementById('previewBar').hidden = false;
+}
 const opened = new Set();
 
 function showToast() {
@@ -831,7 +840,7 @@ function showGallery(res) {
   }));
 }
 
-check(true);
+checkPreview().finally(() => check(true));
 setInterval(() => check(false), 20000);
 setTimeout(loadGallery, 500);
 setInterval(loadGallery, 20000);
