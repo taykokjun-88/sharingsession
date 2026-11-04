@@ -15,7 +15,11 @@ Keep this open on your phone. To unlock a course, send the words in the last col
 | 3:25 PM | 16 to 18 | 肆 斗茶 Tea gathering: submit, then 🎲 Pick a cup at random | **解开 4** |
 | 3:45 PM | 19 to 23 | 伍 茶谱 Tea notes, Skills, Q&A, feedback QR | **解开 5** |
 
-## If Claude cannot be reached
+## Control panel
+
+Open **https://taykokjun-88.github.io/sharingsession/host.html** on your phone or laptop. Press **Open the next course** at each step, or flip a switch. The first time on each device, connect it with a GitHub fine-grained token (Contents read and write, sharingsession only); the panel explains how.
+
+## If Claude and the panel cannot be reached
 
 Edit `unlock.json` on GitHub (repo `taykokjun-88/sharingsession`, pencil icon, then **Commit changes**). The list grows as you go, for example:
 
