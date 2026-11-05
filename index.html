@@ -918,7 +918,7 @@ function fallbackCopy(text, done) {
 // Tasting Table gallery: reads the Google Form responses sheet (shared as "anyone with the link can view")
 const SHEET = 'https://docs.google.com/spreadsheets/d/13m-46SXWrROOEGwEVsn_uFwgtMiTuX2rmniCMucz7jY/gviz/tq?gid=619234008&headers=1';
 function loadGallery() {
-  if (!document.getElementById('gallery')) return;
+  if (!document.getElementById('gallery') || spinning) return;
   const old = document.getElementById('sheetScript');
   if (old) old.remove();
   const sc = document.createElement('script');
@@ -931,7 +931,7 @@ function loadGallery() {
 const tasted = new Set();
 let pickedKey = '', spinning = false;
 function pickRandomDish() {
-  const cards = [...document.querySelectorAll('#gallery .dish-card')].filter(c => c.querySelector('a'));
+  const cards = [...document.querySelectorAll('#gallery .dish-card')];
   if (!cards.length || spinning) return;
   let pool = cards.filter(c => !tasted.has(c.dataset.key));
   if (!pool.length) { tasted.clear(); pool = cards; }
@@ -987,9 +987,11 @@ function showGallery(res) {
     add('div', 'title', d.title || 'Untitled tea');
     add('div', 'by', d.name ? 'by ' + d.name : '');
     add('p', 'love', d.love ? '“' + d.love + '”' : '');
-    if (/^https:\/\//i.test(d.link)) {
+    let link = d.link;
+    if (link && !/^https?:\/\//i.test(link) && /^[\w-]+(\.[\w-]+)+(\/|$)/.test(link)) link = 'https://' + link;
+    if (/^https:\/\//i.test(link)) {
       const a = document.createElement('a');
-      a.className = 'btn'; a.href = d.link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Taste it';
+      a.className = 'btn'; a.href = link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Taste it';
       card.appendChild(a);
     }
     if (tasted.has(card.dataset.key) && card.dataset.key !== pickedKey) add('span', 'tasted', '✓ tasted on the big screen');
