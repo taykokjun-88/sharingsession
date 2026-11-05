@@ -928,13 +928,25 @@ function loadGallery() {
   document.body.appendChild(sc);
 }
 // Random tasting: spins through the dishes, lands on one not yet tasted
-const tasted = new Set();
+// Remembered on this device, so a page refresh does not bring a picked cup back
+const TASTED_KEY = 'teaTasted';
+let tasted;
+try { tasted = new Set(JSON.parse(localStorage.getItem(TASTED_KEY) || '[]')); } catch (e) { tasted = new Set(); }
 let pickedKey = '', spinning = false;
+try { pickedKey = localStorage.getItem(TASTED_KEY + 'Last') || ''; } catch (e) {}
+function saveTasted() {
+  try { localStorage.setItem(TASTED_KEY, JSON.stringify([...tasted])); localStorage.setItem(TASTED_KEY + 'Last', pickedKey); } catch (e) {}
+}
 function pickRandomDish() {
   const cards = [...document.querySelectorAll('#gallery .dish-card')];
   if (!cards.length || spinning) return;
   let pool = cards.filter(c => !tasted.has(c.dataset.key));
-  if (!pool.length) { tasted.clear(); pool = cards; }
+  if (!pool.length) {
+    const btn = document.getElementById('randomDish');
+    btn.textContent = 'All cups tasted';
+    setTimeout(() => { btn.textContent = '🎲 Pick a cup at random'; }, 2500);
+    return;
+  }
   const winner = pool[Math.floor(Math.random() * pool.length)];
   cards.forEach(c => c.classList.remove('picked'));
   spinning = true;
@@ -945,6 +957,7 @@ function pickRandomDish() {
       winner.classList.add('picked');
       pickedKey = winner.dataset.key;
       tasted.add(pickedKey);
+      saveTasted();
       winner.scrollIntoView({behavior: 'smooth', block: 'center'});
       spinning = false;
       return;
