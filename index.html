@@ -170,10 +170,16 @@
   .btn:hover{background:var(--cinnabar-dark)}
   .note{border-left:4px solid var(--gold);background:var(--code);padding:10px 14px;border-radius:0 4px 4px 0;margin:12px 0}
   .tick li::marker{content:'☐  '}
-  .prompt{position:relative;margin:12px 0}
-  .prompt pre{background:var(--code);border:1px solid var(--line);border-radius:6px;padding:16px;padding-top:40px;white-space:pre-wrap;word-break:break-word;font:14px/1.55 Consolas,'Courier New',monospace;margin:0;color:var(--ink)}
-  .prompt .label{position:absolute;top:10px;left:14px;font-size:.75rem;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
-  .prompt .copy{position:absolute;top:6px;right:6px;padding:5px 12px;font-size:.8rem}
+  details.prompt{margin:12px 0;border:1px solid var(--line);border-radius:6px;background:var(--code)}
+  details.prompt>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 8px 8px 14px}
+  details.prompt>summary::-webkit-details-marker{display:none}
+  details.prompt .chev{font-size:.7rem;color:var(--muted);transition:transform .2s;flex:none}
+  details.prompt[open] .chev{transform:rotate(90deg)}
+  details.prompt .label{flex:1;font-size:.75rem;font-weight:700;color:var(--ink);letter-spacing:.05em;text-transform:uppercase}
+  details.prompt .hint{font-size:.75rem;color:var(--muted);flex:none}
+  details.prompt[open] .hint{display:none}
+  details.prompt .copy{padding:5px 12px;font-size:.8rem;flex:none}
+  details.prompt pre{margin:0;padding:14px 16px 16px;border-top:1px dashed var(--line);white-space:pre-wrap;word-break:break-word;font:14px/1.55 Consolas,'Courier New',monospace;color:var(--ink)}
   code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:.9em;color:var(--ink)}
   .preview-bar{background:var(--gold);color:#1F1A17;text-align:center;font-size:.85rem;padding:6px 16px;font-weight:600}
   footer{margin-top:72px;padding:28px 0 40px;font-size:.85rem;text-align:center;color:var(--muted);border-top:1px solid var(--line)}
@@ -391,11 +397,10 @@
           <li><b>Serve</b>: click <b>Assign to learners</b>, give it a title, click <b>Create</b>, and copy the <b>web link</b>. In Canvas, add the link to your Module as an <b>External URL</b>.</li>
         </ol>
         <p>For the <b>lesson description</b> box, fill in this template:</p>
-        <div class="prompt">
-          <span class="label">Tea Bag · Learning Zone lesson description</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Tea Bag · Learning Zone lesson description</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>A [10] slide lesson for [first year undergraduates] on [topic]. Focus on [the one key idea students must understand]. Include practice with [multiple choice and true or false] questions, and end with a short review of the main points.</pre>
-        </div>
+        </details>
         <p style="font-size:.9rem;color:var(--muted)">Not installed yet? <a href="https://learningzone.microsoft.com/en-us" target="_blank" rel="noopener">learningzone.microsoft.com</a> <span class="win-only">Only for Windows based devices</span> · <a href="https://www.youtube.com/watch?v=XVApURh8oFc" target="_blank" rel="noopener">Watch the video walkthrough</a></p>
         <div class="note">Any Windows laptop can create lessons. A normal laptop makes lessons of <b>up to 10 slides</b>, so keep your topic short. A <b>Copilot+ PC</b> has no slide limit. Using a Mac? Watch the demo on the main screen or a colleague at your table, then go straight to Gongfu Tea. Your students can open Learning Zone lessons on any device.</div>
         <div class="note">Done already? Great: you have one lesson in Canvas. Next, <b>Gongfu Tea</b> shows you how to brew a lesson exactly the way you want it.</div>
@@ -416,9 +421,8 @@
           <li>Not sure which activities suit your topic? Start with the <b>ideas</b> prompt.</li>
           <li>Copy the brewing guide below, fill in the parts in <b>[square brackets]</b>, and attach or paste your material.</li>
         </ol>
-        <div class="prompt">
-          <span class="label">Choosing the tea · ideas prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Choosing the tea · ideas prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Here is my course material and my learning goal: [learning goal].
 Suggest 3 interactive activities that would suit this content best (for example matching, sorting, a scenario with choices, flashcards, a timeline or a quiz with feedback).
 For each, explain in one sentence why it fits this content and this goal, and what students would actually do.
@@ -426,10 +430,9 @@ Do not build anything yet.
 
 My material:
 [paste your notes, or attach the file]</pre>
-        </div>
-        <div class="prompt">
-          <span class="label">Brewing guide · Interactive lesson prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        </details>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Brewing guide · Interactive lesson prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>You are an expert instructional designer and web developer.
 
 Create a single, self contained HTML file for an interactive online lesson, based on the course material I provide below.
@@ -452,7 +455,7 @@ Requirements
 
 Here is my material:
 [paste your notes, or attach the file]</pre>
-        </div>
+        </details>
       </div>
     </template>
 
@@ -470,9 +473,8 @@ Here is my material:
           <li><b>Check the content.</b> Is every answer correct? Is anything invented? You are the subject expert.</li>
           <li><b>Ask for changes</b> in plain words. Some examples:</li>
         </ol>
-        <div class="prompt">
-          <span class="label">Adjusting the brew · follow up prompts</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Adjusting the brew · follow up prompts</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Question 3 has the wrong answer. The correct answer is [ ]. Please fix it and give me the full updated file.
 
 Make the text larger and add more space between the questions.
@@ -482,23 +484,21 @@ Add 5 more questions of the same type, using only my material.
 Shuffle the question order each time the page is opened.
 
 At the end, show a summary of which questions the student got wrong, with the correct answers.</pre>
-        </div>
+        </details>
         <div class="note">Always ask for the <b>full updated file</b>, so you can copy it in one go.</div>
         <p><b>Check every leaf.</b> Ask the AI to audit its own work against your material:</p>
-        <div class="prompt">
-          <span class="label">Checking the leaves · fact check prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Checking the leaves · fact check prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Check this lesson against my original material, question by question.
 Make a table with: question, the answer the lesson treats as correct, the exact sentence in my material that supports it, and OK or PROBLEM.
 Mark PROBLEM if the answer is not clearly supported by my material, if more than one option could be correct, or if the feedback explanation adds facts that are not in my material.
 Do not change the lesson yet. Only list the problems.</pre>
-        </div>
+        </details>
         <p><b>Want more than a bigger lesson?</b> Ask for a deeper one:</p>
-        <div class="prompt">
-          <span class="label">A deeper brew · depth prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">A deeper brew · depth prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>I want a deeper version of this task, not a bigger one. Before rewriting it: (1) say what a top professional in this field would do here that I’m not asking for; (2) name the rawest material they would start from instead of what has already been digested for me; (3) name the specific methods and tools they would use; (4) say what, other than you or me, would show the result is right. Then rewrite my prompt to ask for exactly that.</pre>
-        </div>
+        </details>
         <p style="font-size:.85rem;color:var(--muted);margin-top:-4px">Depth prompt by Felix Rieseberg, who works on Claude at Anthropic, from <a href="https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/" target="_blank" rel="noopener">“How to be more ambitious: A tutorial for humans with models”</a> (October 2026).</p>
       </div>
     </template>
@@ -536,17 +536,15 @@ Do not change the lesson yet. Only list the problems.</pre>
             </ol>
           </div>
         </div>
-        <div class="prompt">
-          <span class="label">Serve A · Canvas safe version</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Serve A · Canvas safe version</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Rewrite this lesson so it can be pasted into the Canvas LMS Page HTML editor.
 Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; or &lt;body&gt; tags. Use inline style="" attributes only. For interactivity, use &lt;details&gt; and &lt;summary&gt; to reveal answers and feedback. Keep it responsive with percentage widths.</pre>
-        </div>
-        <div class="prompt">
-          <span class="label">Serve B · Embed a Google Site in a Canvas Page</span>
-          <button class="btn copy" type="button">Copy</button>
+        </details>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Serve B · Embed a Google Site in a Canvas Page</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>&lt;iframe src="PASTE_YOUR_GOOGLE_SITE_LINK_HERE" width="100%" height="800" style="border:0;" loading="lazy" title="Interactive lesson"&gt;&lt;/iframe&gt;</pre>
-        </div>
+        </details>
         <div class="note">Goal for this brew: <b>at least one complete interactive lesson served in Canvas</b>, by either route.</div>
         <div class="note">If the embedded lesson looks cut off in Canvas, increase the <code>height</code> number. If students see a sign in page, check the Google Site's publish setting.</div>
       </div>
@@ -560,9 +558,8 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
           <li><b>Test</b>: open the new lesson, finish it once, and check that a new row appears in the Sheet. Then republish your Google Site.</li>
           <li><b>Read the results</b>: after your class, download the Sheet as CSV and use the analysis prompt.</li>
         </ol>
-        <div class="prompt">
-          <span class="label">Ready made Apps Script · paste into Extensions → Apps Script</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Ready made Apps Script · paste into Extensions → Apps Script</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre style="max-height:280px;overflow:auto">/**
  * Receives lesson results and adds one row per attempt to a "Results" sheet.
  *
@@ -628,10 +625,9 @@ function getSheet_() {
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
 }</pre>
-        </div>
-        <div class="prompt">
-          <span class="label">Taking notes · tracking prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        </details>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Taking notes · tracking prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Add result tracking to this lesson so every attempt is saved in my Google Sheet.
 1. Add a start screen asking for Student ID and Name. The lesson cannot start until both are filled.
 2. During the lesson, record for each question: question number, the student's answer, the correct answer, and right or wrong.
@@ -640,10 +636,9 @@ function json_(obj) {
 4. Also save the same object in localStorage as a backup, and show "Your result has been sent to your lecturer".
 5. Do not collect any other personal data. Keep all questions, design and behaviour exactly the same.
 Give me the full updated file.</pre>
-        </div>
-        <div class="prompt">
-          <span class="label">Reading the leaves · analysis prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        </details>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Reading the leaves · analysis prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>I have attached my class results as a CSV file from Google Sheets. Each row is one attempt.
 Using only this data, tell me:
 1. How many attempts and how many different students.
@@ -652,7 +647,7 @@ Using only this data, tell me:
 4. Students who may need support: the lowest results, or several attempts without improvement. List them by Student ID only.
 5. One concrete thing I should reteach or change in the next class.
 Do not guess beyond the data.</pre>
-        </div>
+        </details>
         <div class="note"><b>Look after student data.</b> Collect only what you need, keep the Sheet private to you, and follow UBD&#39;s guidance on personal data. Never ask students for passwords or IC numbers.</div>
         <p>Want this done the same way every time? Use the <b>google-sheet-tracking</b> Skill in <a href="#stage5">伍 茶谱</a>.</p>
       </div>
@@ -703,13 +698,12 @@ Do not guess beyond the data.</pre>
       <div class="card">
         <h3><span class="brush">借鉴</span>Borrow a good idea</h3>
         <p>Tried a colleague&#39;s tea you liked? Go back to your own AI chat and bring the idea into your lesson:</p>
-        <div class="prompt">
-          <span class="label">Borrowing a good idea · peer improvement prompt</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Borrowing a good idea · peer improvement prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>I tried a colleague's interactive lesson and liked this part: [describe what they did, for example "a drag and drop timeline" or "feedback that explains every wrong option"].
 Add something similar to my lesson, adapted to my own content and learning goal.
 Keep everything else the same and give me the full updated file.</pre>
-        </div>
+        </details>
       </div>
     </template>
   </section>
@@ -764,9 +758,8 @@ Keep everything else the same and give me the full updated file.</pre>
           <li>Read it, correct anything, and save it.</li>
           <li>Next time, start a new chat with the Skill and simply say which topic to brew.</li>
         </ol>
-        <div class="prompt">
-          <span class="label">Brewing guide · Turn this chat into a Skill</span>
-          <button class="btn copy" type="button">Copy</button>
+        <details class="prompt">
+          <summary><span class="chev">▶</span><span class="label">Brewing guide · Turn this chat into a Skill</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>We just made [an interactive lesson] together and I am happy with the result. Turn what we did in this conversation into a reusable Skill, so next time I get the same quality without explaining everything again.
 
 Write one SKILL.md file:
@@ -778,7 +771,7 @@ Write one SKILL.md file:
 • Serve: the exact output format I want.
 
 Use British English and keep it under 200 lines. Give me the complete file in one code block.</pre>
-        </div>
+        </details>
         <h3 style="margin-top:18px">Using a Skill</h3>
         <ul>
           <li><b>Claude:</b> Skills are built in. Open <b>Settings</b>, find <b>Skills</b>, and upload the <code>.zip</code>. Claude uses it automatically when your request matches, and can run its checking script.</li>
@@ -923,12 +916,22 @@ async function check(first) {
 document.addEventListener('click', e => {
   const btn = e.target.closest('.copy');
   if (!btn) return;
-  const text = btn.parentElement.querySelector('pre').innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = 'Copied ✓';
-    setTimeout(() => btn.textContent = 'Copy', 1500);
-  });
+  e.preventDefault();   // copying should not open or close the fold
+  e.stopPropagation();
+  const text = btn.closest('.prompt').querySelector('pre').textContent;
+  const done = () => { btn.textContent = 'Copied ✓'; setTimeout(() => btn.textContent = 'Copy', 1500); };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, () => fallbackCopy(text, done));
+  } else fallbackCopy(text, done);
 });
+// For browsers or embeds without the clipboard API
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); } catch (err) {}
+  ta.remove();
+}
 
 // Tasting Table gallery: reads the Google Form responses sheet (shared as "anyone with the link can view")
 const SHEET = 'https://docs.google.com/spreadsheets/d/13m-46SXWrROOEGwEVsn_uFwgtMiTuX2rmniCMucz7jY/gviz/tq?gid=619234008&headers=1';
