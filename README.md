@@ -18,3 +18,7 @@ Stages open when their key is listed in `unlock.json`. The page checks every 20 
 Example: `{ "unlocked": ["1", "2", "3a"] }`
 
 Add `?preview=<your preview code>` to the page address to see every stage.
+
+## Skills
+
+`skills/` holds three Claude Skills offered on the page: `interactive-lesson-recipe`, `canvas-safe-plating` and `google-sheet-tracking` (with a ready made Apps Script in `apps-script/Code.gs`).
