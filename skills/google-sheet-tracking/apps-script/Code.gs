@@ -1,15 +1,3 @@
-/**
- * Receives lesson results and adds one row per attempt to a "Results" sheet.
- *
- * Setup (once per Google Sheet):
- * 1. In the Google Sheet: Extensions > Apps Script. Delete what is there and paste this file. Save.
- * 2. Deploy > New deployment > type: Web app.
- *    Execute as: Me. Who has access: Anyone. Deploy, then allow the permissions.
- * 3. Copy the Web app URL (it ends in /exec). That is the WEBHOOK_URL for your lesson.
- *
- * Columns are created automatically from the names the lesson sends,
- * so new fields can be added later without editing this script.
- */
 const SHEET_NAME = 'Results';
 
 function doPost(e) {
