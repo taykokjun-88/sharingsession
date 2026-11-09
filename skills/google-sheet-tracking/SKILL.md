@@ -21,9 +21,9 @@ Collect only what the lecturer needs. Never ask students for passwords, IC numbe
 ## 2. Method
 
 1. **Check the lesson** has a clear end (a score or summary screen). If not, add one first.
-2. **Add a start screen** with Student ID and Name fields. The lesson cannot start until both are filled.
+2. **Add a start screen** with Student ID and Name fields. The lesson cannot start until both are filled. Trim spaces and store the Student ID in capital letters, so the same student is not counted twice.
 3. **Record during play**: for each question keep the question id, the student's answer, the correct answer and whether it was right.
-4. **Send once at the end** using exactly this pattern, with `WEBHOOK_URL` as a constant at the top of the script:
+4. **Send once at the end of every attempt** (a "Try again" is a new attempt and a new row) using exactly this pattern, with `WEBHOOK_URL` as a constant at the top of the script:
 
    ```js
    fetch(WEBHOOK_URL, {
@@ -35,7 +35,7 @@ Collect only what the lecturer needs. Never ask students for passwords, IC numbe
    ```
 
    `payload` is one flat object: `studentID`, `studentName`, `lessonTitle`, `score`, `total`, `percent`, `seconds`, `wrongAnswers` (a short text list). `no-cors` is required: Google Apps Script does not allow normal cross site requests, and the request still arrives.
-5. **Confirm to the student** ("Your result has been sent to your lecturer") and also save the payload in `localStorage` as a backup, so a failed network never loses work.
+5. **Confirm to the student on the page**, never with `alert()` ("Your result has been sent to your lecturer") and also save the payload in `localStorage` as a backup, so a failed network never loses work.
 6. **Keep everything else unchanged**: same questions, same design, same behaviour.
 7. **Measure** with section 4, then **serve** as in section 5.
 
@@ -45,6 +45,7 @@ Collect only what the lecturer needs. Never ask students for passwords, IC numbe
 2. Replace the code with `apps-script/Code.gs` from this skill. Save.
 3. **Deploy > New deployment > Web app**. Execute as **Me**. Who has access **Anyone**. Deploy and allow permissions.
 4. Copy the **Web app URL** (ends in `/exec`). Open it in a browser: it should show `{"status":"ok"}`.
+   "Anyone" only means anyone can *send* a result to the script. Nobody can read the Sheet unless the lecturer shares it.
 5. Paste that URL as `WEBHOOK_URL` in the lesson.
 
 After editing the script later, use **Deploy > Manage deployments > Edit > New version**, or the URL keeps running the old code.
@@ -56,7 +57,8 @@ If you can run code: `python scripts/check_tracking.py lesson.html`. Every line 
 - [ ] `WEBHOOK_URL` is defined once and ends in `/exec`
 - [ ] The request uses `mode: 'no-cors'` and `text/plain`
 - [ ] Student ID and name are required before starting
-- [ ] Results are sent once, at the end, not after every question
+- [ ] Results are sent once per attempt, at the end, not after every question
+- [ ] Student ID is trimmed and stored in capital letters
 - [ ] A backup copy is kept in `localStorage`
 - [ ] No sensitive personal data is collected
 - [ ] Test: finish the lesson once and see a new row appear in the Sheet
@@ -68,4 +70,4 @@ If you can run code: `python scripts/check_tracking.py lesson.html`. Every line 
 
 ## 6. Reading the results (when the lecturer shares the Sheet as CSV)
 
-Report, in this order: number of attempts and students; average percentage; the three most missed questions with the wrong answer most often chosen; students who may need support (lowest percentage, or many attempts without improvement); one concrete suggestion for the next class. Use only the data given; never guess.
+Before uploading, the lecturer deletes the `studentName` column: Student IDs are enough. Report, in this order: number of attempts and students; average percentage; the three most missed questions with the wrong answer most often chosen; students who may need support (lowest percentage, or many attempts without improvement); one concrete suggestion for the next class. Use only the data given; never guess.

@@ -399,7 +399,7 @@
         <p>For the <b>lesson description</b> box, fill in this template:</p>
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Tea Bag · Learning Zone lesson description</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
-<pre>A [10] slide lesson for [first year undergraduates] on [topic]. Focus on [the one key idea students must understand]. Include practice with [multiple choice and true or false] questions, and end with a short review of the main points.</pre>
+<pre>A [10] slide lesson for [first year undergraduates] on [topic], based only on the file I uploaded. Focus on [the one key idea students must understand]. Include practice with [multiple choice and true or false] questions, and end with a short review of the main points.</pre>
         </details>
         <p style="font-size:.9rem;color:var(--muted)">Not installed yet? <a href="https://learningzone.microsoft.com/en-us" target="_blank" rel="noopener">learningzone.microsoft.com</a> <span class="win-only">Only for Windows based devices</span> · <a href="https://www.youtube.com/watch?v=XVApURh8oFc" target="_blank" rel="noopener">Watch the video walkthrough</a></p>
         <div class="note">Any Windows laptop can create lessons. A normal laptop makes lessons of <b>up to 10 slides</b>, so keep your topic short. A <b>Copilot+ PC</b> has no slide limit. Using a Mac? Watch the demo on the main screen or a colleague at your table, then go straight to Gongfu Tea. Your students can open Learning Zone lessons on any device.</div>
@@ -423,9 +423,10 @@
         </ol>
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Choosing the tea · ideas prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
-<pre>Here is my course material and my learning goal: [learning goal].
+<pre>Here is my course material. My students are [e.g. first year undergraduates] and my learning goal is: [learning goal].
 Suggest 3 interactive activities that would suit this content best (for example matching, sorting, a scenario with choices, flashcards, a timeline or a quiz with feedback).
-For each, explain in one sentence why it fits this content and this goal, and what students would actually do.
+For each, explain in one sentence why it fits this content and this goal, and what students would actually do. Also say whether it can work in a plain Canvas Page (revealing answers only) or needs Google Sites (scores, drag and drop, games).
+Then recommend one for a first try.
 Do not build anything yet.
 
 My material:
@@ -443,15 +444,18 @@ Lesson details
 • Students: [e.g. first year undergraduates, English as a second language]
 • Learning goal: [what students should be able to do after the lesson]
 • Activity types: [choose 2 or 3: multiple choice quiz with feedback, drag and drop sorting, matching pairs, flashcards, fill in the blanks, scenario with choices, timeline ordering]
+• Number of questions: [e.g. 8 in total]
 
 Requirements
-1. One HTML file only. All CSS and JavaScript inside the file. No external libraries, no images from the internet.
+1. One HTML file only. All CSS and JavaScript inside the file. No external libraries, fonts or images from the internet.
 2. Start with a short explanation of the key ideas, then the activities.
-3. Every activity gives instant feedback: say whether the answer is right, and briefly explain why.
-4. Show a score or progress indicator and a "Try again" button.
-5. Clean, modern design with large readable text. Works well on a phone and a laptop.
-6. Use British English. Keep instructions short and clear.
-7. Use only the content from my material. Do not invent facts.
+3. Every activity gives instant feedback: say whether the answer is right, and briefly explain why, also when it is wrong.
+4. Show progress (for example "Question 3 of 8") and the score. At the end, show which questions were missed with the correct answers, and a "Try again" button.
+5. Clean, modern design with large readable text and large buttons. Works well on a phone and a laptop. Drag and drop must also work on a touchscreen; if that is not possible, use tap to select and tap to place.
+6. Show every message on the page itself. Do not use pop up boxes (alert).
+7. Write instructions in British English, short and clear. Keep the course content in the language of my material.
+8. Use only the content from my material. Do not invent facts. Each multiple choice question has exactly one correct answer, and no "All of the above".
+9. Give me the complete file in one code block.
 
 Here is my material:
 [paste your notes, or attach the file]</pre>
@@ -483,7 +487,9 @@ Add 5 more questions of the same type, using only my material.
 
 Shuffle the question order each time the page is opened.
 
-At the end, show a summary of which questions the student got wrong, with the correct answers.</pre>
+This part does not work: [what you clicked, and what happened]. Find the cause, fix it, and give me the full updated file.
+
+Drag and drop does not work on my phone. Make it work on a touchscreen too.</pre>
         </details>
         <div class="note">Always ask for the <b>full updated file</b>, so you can copy it in one go.</div>
         <p><b>Check every leaf.</b> Ask the AI to audit its own work against your material:</p>
@@ -492,7 +498,7 @@ At the end, show a summary of which questions the student got wrong, with the co
 <pre>Check this lesson against my original material, question by question.
 Make a table with: question, the answer the lesson treats as correct, the exact sentence in my material that supports it, and OK or PROBLEM.
 Mark PROBLEM if the answer is not clearly supported by my material, if more than one option could be correct, or if the feedback explanation adds facts that are not in my material.
-Do not change the lesson yet. Only list the problems.</pre>
+Do not change the lesson yet. Only list the problems. After I confirm, fix them using only my material and give me the full updated file.</pre>
         </details>
       </div>
     </template>
@@ -533,7 +539,8 @@ Do not change the lesson yet. Only list the problems.</pre>
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Serve A · Canvas safe version</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Rewrite this lesson so it can be pasted into the Canvas LMS Page HTML editor.
-Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; or &lt;body&gt; tags. Use inline style="" attributes only. For interactivity, use &lt;details&gt; and &lt;summary&gt; to reveal answers and feedback. Keep it responsive with percentage widths.</pre>
+Rules: no &lt;script&gt;, no JavaScript, no onclick or other on... attributes. No &lt;style&gt; block, no &lt;link&gt;, no &lt;html&gt;, &lt;head&gt; or &lt;body&gt; tags. Use inline style="" attributes only, no class or id. For interactivity, use &lt;details&gt; and &lt;summary&gt; to reveal answers and feedback. Keep the content within max-width 760px and use percentage widths so it works on a phone.
+Give me only the HTML in one code block, then tell me in one or two lines what had to be simplified (for example the score).</pre>
         </details>
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Serve B · Embed a Google Site in a Canvas Page</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
@@ -550,7 +557,7 @@ Rules: no &lt;script&gt;, no &lt;style&gt; block, no &lt;html&gt;, &lt;head&gt; 
           <li><b>Deploy</b>: <b>Deploy → New deployment</b>, type <b>Web app</b>. Execute as <b>Me</b>, Who has access <b>Anyone</b>. Deploy, allow the permissions, and copy the <b>Web app URL</b> (it ends in <code>/exec</code>).</li>
           <li><b>Connect your lesson</b>: in the same AI chat as your lesson, paste the tracking prompt with your URL.</li>
           <li><b>Test</b>: open the new lesson, finish it once, and check that a new row appears in the Sheet. Then republish your Google Site.</li>
-          <li><b>Read the results</b>: after your class, download the Sheet as CSV and use the analysis prompt.</li>
+          <li><b>Read the results</b>: after your class, download the Sheet as CSV (<b>File → Download → CSV</b>), delete the <b>studentName</b> column, and upload it with the analysis prompt. Student IDs are enough for the AI.</li>
         </ol>
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Ready made Apps Script · paste into Extensions → Apps Script</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
@@ -611,11 +618,11 @@ function json_(obj) {
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Taking notes · tracking prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>Add result tracking to this lesson so every attempt is saved in my Google Sheet.
-1. Add a start screen asking for Student ID and Name. The lesson cannot start until both are filled.
+1. Add a start screen asking for Student ID and Name. The lesson cannot start until both are filled. Remove extra spaces and save the Student ID in capital letters.
 2. During the lesson, record for each question: question number, the student's answer, the correct answer, and right or wrong.
-3. At the end, send ONE request with fetch to this address: const WEBHOOK_URL = "[paste your /exec Web app URL]";
+3. At the end of every attempt (also after "Try again"), send ONE request with fetch to this address: const WEBHOOK_URL = "[paste your /exec Web app URL]";
    Use method POST, mode "no-cors", header Content-Type "text/plain;charset=utf-8", and body JSON.stringify of one flat object with: studentID, studentName, lessonTitle, score, total, percent, seconds, wrongAnswers (a short text list).
-4. Also save the same object in localStorage as a backup, and show "Your result has been sent to your lecturer".
+4. Also save the same object in localStorage as a backup, and show "Your result has been sent to your lecturer" on the page.
 5. Do not collect any other personal data. Keep all questions, design and behaviour exactly the same.
 Give me the full updated file.</pre>
         </details>
@@ -737,7 +744,7 @@ Keep everything else the same and give me the full updated file.</pre>
         <ol>
           <li>Stay in the same conversation, so the AI remembers every fix you asked for.</li>
           <li>Paste the prompt below. The AI writes a <code>SKILL.md</code> file from what worked, including the mistakes it must never repeat.</li>
-          <li>Read it, correct anything, and save it.</li>
+          <li>Read it, correct anything, and save it as <code>SKILL.md</code>. For Claude, put it in a folder named after the Skill and zip the folder.</li>
           <li>Next time, start a new chat with the Skill and simply say which topic to brew.</li>
         </ol>
         <details class="prompt">
@@ -752,6 +759,7 @@ Write one SKILL.md file:
 • Measure: a checklist to verify before handing over. Include every mistake we fixed in this chat so it never happens again.
 • Serve: the exact output format I want.
 
+Do not include any student names, IDs or other personal data.
 Use British English and keep it under 200 lines. Give me the complete file in one code block.</pre>
         </details>
         <h3 style="margin-top:18px">Using a Skill</h3>

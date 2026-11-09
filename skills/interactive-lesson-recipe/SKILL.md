@@ -16,11 +16,13 @@ A fixed recipe for interactive lessons. Follow every step in order, every time, 
 | Students | first year undergraduates, English as a second language |
 | Learning goal | write one from the material and show it to the lecturer |
 | Activity types | multiple choice with feedback, plus one of: matching, sorting, fill in the blanks |
+| Number of questions | 5 to 8 per activity |
+| Language of the content | the language of the material (instructions stay in British English) |
 | Material | ask; never write a lesson without the lecturer's material |
 
 ## 2. Method
 
-1. **Read the material.** List 3 to 5 key ideas, using only facts found in the material.
+1. **Read the material.** List 3 to 5 key ideas, using only facts found in the material. If the material is a whole chapter, suggest one short topic from it first.
 2. **Plan the lesson** in this fixed order:
    1. Title and one sentence learning goal
    2. Key ideas: short cards, at most 120 words in total
@@ -38,10 +40,13 @@ A fixed recipe for interactive lessons. Follow every step in order, every time, 
 - Font: `system-ui, 'Segoe UI', Arial, sans-serif`, body at least 18px, line height 1.6.
 - Colours: background `#FFFFFF`, text `#1F2937`, primary `#325494`, correct `#15803D`, incorrect `#B91C1C`. Never rely on colour alone: also show ✓ or ✗ and words.
 - Buttons at least 44px high. Content width at most 760px, centred, works at 375px wide.
-- Feedback on every answer: say right or wrong, then one sentence explaining why, taken from the material.
+- Feedback on every answer: say right or wrong, then one sentence explaining why, taken from the material. Wrong answers get an explanation too.
+- Each multiple choice question has exactly one correct answer. No "All of the above" or "None of the above" (they break when options are shuffled).
+- Drag and drop must also work on a touchscreen (pointer events), or use tap to select and tap to place.
+- Every message appears on the page. Never use `alert()`, `confirm()` or `prompt()`.
 - Progress shown as "Question 3 of 8" and a running score.
 - Shuffle question order and answer options on each load.
-- British English. Short, friendly instructions.
+- British English for instructions, short and friendly. Course content stays in the language of the material (for example Chinese characters with pinyin, if the material has them).
 
 ## 4. Measure (quality checks)
 
@@ -55,9 +60,12 @@ Every line must say PASS. If you cannot run code, check the same list by hand:
 
 - [ ] Every question and answer can be traced to the lecturer's material. Nothing invented.
 - [ ] Each multiple choice question has exactly one correct answer.
-- [ ] Every answer gives feedback with a reason.
+- [ ] Every answer gives feedback with a reason, right or wrong.
+- [ ] No "All of the above" or "None of the above".
+- [ ] No `alert()`, `confirm()` or `prompt()`.
+- [ ] Drag and drop (if used) works with a finger on a phone.
 - [ ] Score, progress and a "Try again" button are present.
-- [ ] No `http://` or `https://` references, no `<link>`, no `<script src=...>`.
+- [ ] No `http://` or `https://` references, no `<link>`, no `<script src=...>` (only exception: the Google Apps Script `/exec` address added by `google-sheet-tracking`).
 - [ ] File size under 200 KB.
 - [ ] `lang="en-GB"` and the viewport meta tag are present.
 
@@ -68,3 +76,4 @@ Every line must say PASS. If you cannot run code, check the same list by hand:
    - what the lesson contains (activities and number of items)
    - how to test it: save as `lesson.html`, open in a browser, answer some right and some wrong
    - how to publish: this file uses JavaScript, so host it on Google Sites (Insert, Embed, Embed code) and link or embed it in Canvas. For a version that pastes straight into a Canvas Page, use the `canvas-safe-plating` skill.
+   - to save each student's result in a Google Sheet, use the `google-sheet-tracking` skill.

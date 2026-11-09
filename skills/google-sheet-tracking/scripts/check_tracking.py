@@ -20,6 +20,9 @@ def main(path):
         ("Uses a text/plain body", "text/plain" in low),
         ("Asks for a student ID", re.search(r"student\s*_?id|studentid", low) is not None),
         ("Keeps a localStorage backup", "localstorage.setitem" in low),
+        ("Sends score and percent", "score" in low and "percent" in low),
+        ("Student ID in capital letters", "touppercase()" in low),
+        ("No pop up boxes (alert)", re.search(r"\balert\s*\(", low) is None),
         ("No password or IC number fields", not re.search(r"type=[\"']password|ic\s*number|nric", low)),
     ]
     failed = 0

@@ -49,10 +49,11 @@ Every line must say PASS. If you cannot run code, check by hand:
 - [ ] No fixed widths over 700px
 - [ ] Every `<img>` has `alt` and an `https://` source
 - [ ] Every question has its answer inside `<details>`
+- [ ] Content wrapped in a `max-width:760px` container
 
 ## 5. Serve
 
-**If it can be plated:** one code block with the HTML only, then:
+**If it can be plated:** one code block with the HTML only, then one or two lines on what had to be simplified (for example the running score), then:
 
 1. In Canvas, open or create a Page and click Edit.
 2. Click the HTML editor icon `</>` at the bottom right of the editor.
