@@ -7,12 +7,12 @@ Keep this open on your phone. To unlock a course, press **Open the next course**
 | 1:30 PM | | Set up: projector, open the page with `?preview=` and your preview code, open the deck, open Claude and Learning Zone | |
 | 2:00 PM | 1 to 5 | Welcome, tea host, tea list, order of service (opens by itself at 2:00 PM), open the page | **0** (auto) |
 | 2:05 PM | 6 | 壹 识器 The tea room | **解开 1** |
-| 2:15 PM | 9 | 贰 观茶 Watch the brew (Demo A Learning Zone, Demo B Mandarin apps) | **解开 2** |
-| 2:30 PM | 12 | 叁 Step 1 茶包 Tea Bag | **解开 3a** |
-| 2:40 PM | 13 | 叁 Step 2 置茶 Measure the leaves | **解开 3b** |
-| 2:50 PM | 14 | 叁 Step 3 闻香 Smell, sip and adjust | **解开 3c** |
-| 3:05 PM | 15 to 17 | 叁 Step 4 奉茶 Serve in Canvas, optional 茶记 tracking, then 茶点 bonus: Knowledge Isles (class code TEST1111) | **解开 3d** |
-| 3:25 PM | 18 to 20 | 肆 斗茶 Tea gathering: submit, then 🎲 Pick a cup at random | **解开 4** |
+| 2:10 PM | 9 | 贰 观茶 Watch the brew (Demo A Learning Zone, Demo B Mandarin apps) | **解开 2** |
+| 2:20 PM | 12 | 叁 Step 1 茶包 Tea Bag | **解开 3a** |
+| 2:30 PM | 13 | 叁 Step 2 置茶 Measure the leaves | **解开 3b** |
+| 2:40 PM | 14 | 叁 Step 3 闻香 Smell, sip and adjust | **解开 3c** |
+| 2:50 PM | 15 to 17 | 叁 Step 4 奉茶 Serve in Canvas, optional 茶记 tracking, then 茶点 bonus: Knowledge Isles (class code TEST1111) | **解开 3d** |
+| 3:05 PM | 18 to 20 | 肆 斗茶 Tea gathering: 30 min brew and submit (3:05 to 3:35), then 10 min 🎲 Pick a cup at random, 2 to 3 cups depending on time (3:35 to 3:45) | **解开 4** |
 | 3:45 PM | 21 to 25 | 伍 茶谱 Tea notes, Skills, Q&A, then InTELECT gives out the feedback form | **解开 5** |
 
 ## Control panel
