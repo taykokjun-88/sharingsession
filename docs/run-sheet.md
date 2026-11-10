@@ -11,9 +11,9 @@ Keep this open on your phone. To unlock a course, press **Open the next course**
 | 2:30 PM | 12 | 叁 Step 1 茶包 Tea Bag | **解开 3a** |
 | 2:40 PM | 13 | 叁 Step 2 置茶 Measure the leaves | **解开 3b** |
 | 2:50 PM | 14 | 叁 Step 3 闻香 Smell, sip and adjust | **解开 3c** |
-| 3:05 PM | 15 to 16 | 叁 Step 4 奉茶 Serve in Canvas, optional 茶记 tracking | **解开 3d** |
-| 3:25 PM | 17 to 19 | 肆 斗茶 Tea gathering: submit, then 🎲 Pick a cup at random | **解开 4** |
-| 3:45 PM | 20 to 24 | 伍 茶谱 Tea notes, Skills, Q&A, then InTELECT gives out the feedback form | **解开 5** |
+| 3:05 PM | 15 to 17 | 叁 Step 4 奉茶 Serve in Canvas, optional 茶记 tracking, then 茶点 bonus: Knowledge Isles (class code TEST1111) | **解开 3d** |
+| 3:25 PM | 18 to 20 | 肆 斗茶 Tea gathering: submit, then 🎲 Pick a cup at random | **解开 4** |
+| 3:45 PM | 21 to 25 | 伍 茶谱 Tea notes, Skills, Q&A, then InTELECT gives out the feedback form | **解开 5** |
 
 ## Control panel
 
