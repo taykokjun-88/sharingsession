@@ -460,6 +460,50 @@ Requirements
 Here is my material:
 [paste your notes, or attach the file]</pre>
         </details>
+      <p style="margin-top:16px"><b>Want a richer lesson, like the Mandarin examples in <a href="#stage2">贰 观茶</a>?</b> Use the rich prompt instead. It asks for a full learning system: tabs, cards, a practice builder, an error clinic, a scenario, an XP bar and a self-test with a certificate.</p>
+      <details class="prompt">
+        <summary><span class="chev">▶</span><span class="label">Brewing guide · Rich learning system prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
+<pre>You are an expert instructional designer, learning game designer and web developer.
+
+Build a rich, single file HTML interactive learning system for one topic of my course, based only on the material I attach. It should feel like a polished learning app, not a simple quiz.
+
+About the lesson
+• Course / module: [e.g. LM-3403 Mandarin 5]
+• Topic: [e.g. Climate change, booking flights and smart shopping]
+• Students: [e.g. second year undergraduates, CEFR B1]
+• Learning goals: [3 to 6 things students can do after the lesson]
+• Time students should spend: [e.g. 45 minutes]
+
+Structure: tabs across the top, in this order, each ending with a "Next ➜" button
+1. Orientation: the learning goals as "I can..." statements, and 3 short steps on how to use the system.
+2. Key ideas: clickable cards. The front shows a term or question; a click reveals the explanation and one example from my material.
+3. Practice workshop: a hands on builder that suits my subject (for example build a sentence, sort items into groups, match causes to effects, put steps in order). Use tap to select and tap to place, so it works on phones.
+4. Error clinic: 5 to 8 typical student mistakes based on my material. Students try to spot the error, then press a button to see the diagnosis and the corrected version.
+5. Case or dialogue: a realistic scenario from my material, with a "hide the text" mode so students recall first and then click to reveal.
+6. Apply it: a short task completed on screen (for example fill in a form, solve a case, label parts), with a "Check my answers" button that marks each part and explains.
+7. Self-test: 10 to 12 mixed questions, one attempt each, shuffled. Show the score and the missed questions with explanations. 80% or above unlocks a certificate with the student's name, the topic and the date.
+
+Throughout
+• An XP progress bar at the top that fills as students complete activities.
+• Instant feedback on every answer: right or wrong, and why.
+• A toggle to show or hide support, such as English translations or hints.
+• Language courses only: a 🔊 button on every word and sentence using the browser's speechSynthesis in [language code, e.g. zh-CN], with speed buttons 0.6x, 0.8x and 1.0x, plus a listening practice tab before the self-test. Delete this line for other subjects.
+• A warm, modern design with a theme that suits my subject, an icon or emoji for each section, large text and big buttons. Works on a phone and a laptop.
+• Show every message on the page itself, never in pop up boxes (alert).
+
+Rules
+• One HTML file. All CSS and JavaScript inside. No external libraries, fonts or images.
+• Use only facts from my material. Do not invent content. Each multiple choice question has exactly one correct answer.
+• Instructions in British English; course content in the language of my material.
+
+How to work
+First, reply with a plan only: for each tab, list what you will put in it from my material. Wait for my OK.
+After I say OK, build the complete file in one code block. If it is too long for one reply, stop at the end of a complete tab and tell me to type "continue". Never leave the file half finished.
+
+My material:
+[attach the file, or paste your notes]</pre>
+      </details>
+      <div class="note"><b>Richer tea takes longer to brew.</b> The AI first shows you a plan; check it and reply OK. The file is long, so use <b>Claude</b> or <b>Gemini</b>, and type <b>continue</b> if it stops. Then adjust it over a few rounds in Step 3: rich lessons are built over several rounds, not one.</div>
       </div>
     </template>
 
