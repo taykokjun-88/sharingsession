@@ -417,52 +417,22 @@
         <h3><span class="brush">置茶</span>Step 2 · Gongfu Tea: measure the leaves (10 min)</h3>
         <ol>
           <li>Pick <b>one short topic</b> from your course material: one concept, one reading, or one set of questions.</li>
-          <li>Open ChatGPT, Gemini, or Claude.</li>
-          <li>Not sure which activities suit your topic? Start with the <b>ideas</b> prompt.</li>
+          <li>Open <b>Claude</b> or <b>Gemini</b> (ChatGPT also works).</li>
+          <li>Not sure which topic or activities to choose? Start with the <b>ideas</b> prompt.</li>
           <li>Copy the brewing guide below, fill in the parts in <b>[square brackets]</b>, and attach or paste your material.</li>
         </ol>
         <details class="prompt">
           <summary><span class="chev">▶</span><span class="label">Choosing the tea · ideas prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
-<pre>Here is my course material. My students are [e.g. first year undergraduates] and my learning goal is: [learning goal].
-Suggest 3 interactive activities that would suit this content best (for example matching, sorting, a scenario with choices, flashcards, a timeline or a quiz with feedback).
-For each, explain in one sentence why it fits this content and this goal, and what students would actually do. Also say whether it can work in a plain Canvas Page (revealing answers only) or needs Google Sites (scores, drag and drop, games).
-Then recommend one for a first try.
-Do not build anything yet.
+<pre>Here is my course material. My students are [e.g. first year undergraduates]. I want to build an interactive learning system on one topic from it.
+1. Suggest one topic from this material that suits a 30 to 45 minute lesson, and write 3 to 6 learning goals for it as "I can..." statements.
+2. Suggest the best hands on practice activity for this content (for example build a sentence, sort items into groups, match causes to effects, put steps in order), and one realistic task students could complete on screen to apply what they learnt.
+Explain each choice in one sentence. Do not build anything yet.
 
 My material:
 [paste your notes, or attach the file]</pre>
         </details>
-        <details class="prompt">
-          <summary><span class="chev">▶</span><span class="label">Brewing guide · Interactive lesson prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
-<pre>You are an expert instructional designer and web developer.
-
-Create a single, self contained HTML file for an interactive online lesson, based on the course material I provide below.
-
-Lesson details
-• Course / module: [e.g. Introduction to Economics]
-• Topic: [e.g. Supply and demand]
-• Students: [e.g. first year undergraduates, English as a second language]
-• Learning goal: [what students should be able to do after the lesson]
-• Activity types: [choose 2 or 3: multiple choice quiz with feedback, drag and drop sorting, matching pairs, flashcards, fill in the blanks, scenario with choices, timeline ordering]
-• Number of questions: [e.g. 8 in total]
-
-Requirements
-1. One HTML file only. All CSS and JavaScript inside the file. No external libraries, fonts or images from the internet.
-2. Start with a short explanation of the key ideas, then the activities.
-3. Every activity gives instant feedback: say whether the answer is right, and briefly explain why, also when it is wrong.
-4. Show progress (for example "Question 3 of 8") and the score. At the end, show which questions were missed with the correct answers, and a "Try again" button.
-5. Clean, modern design with large readable text and large buttons. Works well on a phone and a laptop. Drag and drop must also work on a touchscreen; if that is not possible, use tap to select and tap to place.
-6. Show every message on the page itself. Do not use pop up boxes (alert).
-7. Write instructions in British English, short and clear. Keep the course content in the language of my material.
-8. Use only the content from my material. Do not invent facts. Each multiple choice question has exactly one correct answer, and no "All of the above".
-9. Give me the complete file in one code block.
-
-Here is my material:
-[paste your notes, or attach the file]</pre>
-        </details>
-      <p style="margin-top:16px"><b>Want a richer lesson, like the Mandarin examples in <a href="#stage2">贰 观茶</a>?</b> Use the rich prompt instead. It asks for a full learning system: tabs, cards, a practice builder, an error clinic, a scenario, an XP bar and a self-test with a certificate.</p>
       <details class="prompt">
-        <summary><span class="chev">▶</span><span class="label">Brewing guide · Rich learning system prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
+        <summary><span class="chev">▶</span><span class="label">Brewing guide · Interactive learning system prompt</span><span class="hint">Show</span><button class="btn copy" type="button">Copy</button></summary>
 <pre>You are an expert instructional designer, learning game designer and web developer.
 
 Build a rich, single file HTML interactive learning system for one topic of my course, based only on the material I attach. It should feel like a polished learning app, not a simple quiz.
@@ -503,7 +473,7 @@ After I say OK, build the complete file in one code block. If it is too long for
 My material:
 [attach the file, or paste your notes]</pre>
       </details>
-      <div class="note"><b>Richer tea takes longer to brew.</b> The AI first shows you a plan; check it and reply OK. The file is long, so use <b>Claude</b> or <b>Gemini</b>, and type <b>continue</b> if it stops. Then adjust it over a few rounds in Step 3: rich lessons are built over several rounds, not one.</div>
+      <div class="note"><b>Gongfu Tea takes time to brew.</b> The AI first shows you a plan; check it and reply OK. The file is long, so use <b>Claude</b> or <b>Gemini</b>, and type <b>continue</b> if it stops. Then adjust it over a few rounds in Step 3: a complete lesson is built over several rounds, not one.</div>
       </div>
     </template>
 
@@ -837,7 +807,7 @@ Use British English and keep it under 200 lines. Give me the complete file in on
       <div class="grid">
         <div class="card dish special">
           <h3><span class="brush">茶经 一</span>interactive-lesson-recipe</h3>
-          <p>Turns your notes into a single file interactive lesson with a fixed structure, house style, and a script that checks it before serving.</p>
+          <p>Turns your notes into a complete interactive learning system (tabs, cards, a practice builder, an error clinic, XP and a self-test with a certificate), with a fixed structure, house style, and a script that checks it before serving.</p>
           <p><a class="btn" href="skills/interactive-lesson-recipe.zip" download>Download .zip</a> <a href="https://github.com/taykokjun-88/sharingsession/blob/main/skills/interactive-lesson-recipe/SKILL.md" target="_blank" rel="noopener">Read SKILL.md</a></p>
         </div>
         <div class="card dish special">
