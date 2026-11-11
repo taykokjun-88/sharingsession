@@ -224,7 +224,7 @@
     <li data-for="1"><a href="#stage1"><span class="brush">识器</span>1 · The tea room</a></li>
     <li data-for="2"><a href="#stage2"><span class="brush">观茶</span>2 · Watch the brew</a></li>
     <li data-for="3a"><a href="#stage3"><span class="brush">冲泡</span>3 · Brew along</a></li>
-    <li data-for="4"><a href="#stage4"><span class="brush">斗茶</span>4 · Tea gathering</a></li>
+    <li data-for="4" style="display:none"><a href="#stage4"><span class="brush">斗茶</span>4 · Tea gathering</a></li>
     <li data-for="5"><a href="#stage5"><span class="brush">茶谱</span>5 · Tea notes</a></li>
   </ol>
 </nav>
@@ -655,7 +655,7 @@ Do not guess beyond the data.</pre>
         <p>Want this done the same way every time? Use the <b>google-sheet-tracking</b> Skill in <a href="#stage5">伍 茶谱</a>.</p>
       </div>
       <div class="card" id="knowledge-isles">
-        <p style="font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0">Bonus share · before the Tea Gathering</p>
+        <p style="font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0">Bonus share</p>
         <h3><span class="brush">茶点</span>A sweet to go with your tea: Mandarin 1 Knowledge Isles</h3>
         <a href="https://taykokjun-88.github.io/mandarinknowledgeislandlevel1/" target="_blank" rel="noopener"><img class="art" src="assets/img/knowledge-isles.webp" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--line, #E3D7C1);margin:6px 0 12px" alt="Mandarin 1 Knowledge Isles: a 3D map of nine islands, C1 to C9, one for each chapter of Mandarin 1, with stars and coins to collect"></a>
         <p>A gamified learning world for Mandarin 1: nine islands, one for each chapter. Students log in, study each island, take its challenge, collect stars and coins, and unlock the next island. Their progress is saved, so they can carry on from any device.</p>
@@ -670,7 +670,8 @@ Do not guess beyond the data.</pre>
     </template>
   </section>
 
-  <section id="stage4">
+  <!-- Tea Gathering hidden after the workshop (11 Nov 2026). Remove style="display:none" here and on the nav item to show it again. -->
+  <section id="stage4" style="display:none">
     <h2><span class="seal">肆</span><span class="zh brush">斗茶</span><span class="en">Tea gathering: participant showcase</span> <span class="time">3:05 PM · 40 min</span></h2>
     <div class="stroke"></div>
     <div data-stage="4" data-zh="斗茶" data-label="Brew and serve your own tea, then taste together · 40 min"></div>
@@ -825,8 +826,7 @@ Use British English and keep it under 200 lines. Give me the complete file in on
         <h3>Take the tea notes home</h3>
         <ul>
           <li>All brewing guides (prompt templates) and all three Skills stay on this page. Bookmark it.</li>
-          <li>The <a href="#stage4">Tea Gathering</a> stays open too. Keep trying your colleagues&#39; teas and learning from each other.</li>
-        </ul>
+                  </ul>
       </div>
       <div class="card" style="text-align:center">
         <img class="art top-art" style="max-width:200px" src="assets/img/cha-bow.webp" loading="lazy" alt="Xiao Cha giving a polite fist and palm salute">
@@ -961,6 +961,8 @@ function fallbackCopy(text, done) {
 // Tasting Table gallery: reads the Google Form responses sheet (shared as "anyone with the link can view")
 const SHEET = 'https://docs.google.com/spreadsheets/d/13m-46SXWrROOEGwEVsn_uFwgtMiTuX2rmniCMucz7jY/gviz/tq?gid=619234008&headers=1';
 function loadGallery() {
+  const sec = document.getElementById('stage4');
+  if (sec && sec.style.display === 'none') return;
   if (!document.getElementById('gallery') || spinning) return;
   const old = document.getElementById('sheetScript');
   if (old) old.remove();
