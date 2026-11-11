@@ -5,7 +5,7 @@ Keep this open on your phone. To unlock a course, press **Open the next course**
 | Time | Slide | Course | Unlock |
 |---|---|---|---|
 | 1:30 PM | | Set up: projector, open the page with `?preview=` and your preview code, open the deck, open Claude and Learning Zone | |
-| 2:00 PM | 1 to 5 | Welcome, tea host, tea list, order of service (opens by itself at 2:00 PM), open the page | **0** (auto) |
+| 2:00 PM | 1 to 5 | Welcome, tea host, tea list, order of service (opens by itself at 1:59 PM), open the page | **0** (auto) |
 | 2:05 PM | 6 | 壹 识器 The tea room | **解开 1** |
 | 2:10 PM | 9 | 贰 观茶 Watch the brew (Demo A Learning Zone, Demo B Mandarin apps) | **解开 2** |
 | 2:20 PM | 12 | 叁 Step 1 茶包 Tea Bag | **解开 3a** |
@@ -27,7 +27,7 @@ Edit `unlock.json` on GitHub (repo `taykokjun-88/sharingsession`, pencil icon, t
 { "unlocked": ["1", "2", "3a"] }
 ```
 
-Keys in order: `0` (order of service, opens by itself at 2:00 PM), `1`, `2`, `3a`, `3b`, `3c`, `3d`, `4`, `5`.
+Keys in order: `0` (order of service, opens by itself at 1:59 PM), `1`, `2`, `3a`, `3b`, `3c`, `3d`, `4`, `5`.
 
 ## After the workshop
 
